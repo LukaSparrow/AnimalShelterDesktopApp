@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<VBox fx:id="vbox" alignment="CENTER" prefHeight="400.0" prefWidth="640.0" spacing="15" style="-fx-background-color: transparent; -fx-background-color: black;" stylesheets="@../../../styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="studia.animalshelterdesktopapp.controllers.LoginView">
+    <children>
+        <!-- Nagłówek aplikacji -->
+        <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 36px; -fx-font-weight: bold; -fx-fill: #ffffff;" text="Shelter Manager">
+            <font>
+                <Font size="36.0" />
+            </font>
+        </Text>
+
+        <!-- Formularz logowania -->
+        <VBox fx:id="loginForm" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="160.0" prefWidth="297.0" spacing="10" styleClass="login-form">
+            <HBox alignment="CENTER" spacing="10">
+                <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="70.0" style="-fx-font-size: 14px; -fx-text-fill: white;" text="Username:" />
+                <TextField fx:id="username" prefHeight="39.0" prefWidth="34.0" promptText="Enter your username" styleClass="text-field" />
+            </HBox>
+
+            <HBox alignment="CENTER" prefWidth="394.0" spacing="10">
+                <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="70.0" style="-fx-font-size: 14px; -fx-text-fill: white;" text="Password:" />
+                <PasswordField fx:id="password" promptText="Enter your password" styleClass="text-field" />
+            </HBox>
+
+            <!-- Przycisk logowania -->
+            <Button fx:id="loginButton" onAction="#login" styleClass="login-button" text="Log in">
+                <font>
+                    <Font size="14.0" />
+                </font>
+            </Button>
+        </VBox>
+
+        <!-- Wynik logowania -->
+        <Text fx:id="loginResult" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 14px;" underline="true" />
+    </children>
+</VBox>

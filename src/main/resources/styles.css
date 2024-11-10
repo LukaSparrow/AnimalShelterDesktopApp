@@ -1,0 +1,62 @@
+/* Styl dla całego tła */
+.vbox {
+    -fx-background-image: url("/studia/animalshelterdesktopapp/views/kurwa.jpg");
+    -fx-background-size: cover;          /* Tło wypełnia całe okno */
+    -fx-background-position: center;     /* Tło jest wyśrodkowane */
+    -fx-background-repeat: no-repeat;    /* Tło się nie powtarza */
+    -fx-pref-width: 100%;                /* Całe okno wypełnia kontener */
+    -fx-pref-height: 100%;               /* Całe okno wypełnia kontener */
+}
+
+/* Styl dla formularza logowania */
+.login-form {
+    -fx-background-color: rgba(255, 255, 255, 0.7);  /* Przezroczyste tło */
+    -fx-padding: 20px;
+    -fx-border-radius: 10px;
+
+    -fx-border-outline: 1px;
+    -fx-background-radius: 10px;
+    -fx-pref-width: 300px;  /* Ustawiamy stałą szerokość formularza na 300px */
+    -fx-min-width: 250px;  /* Minimalna szerokość formularza */
+}
+
+/* Styl dla pól tekstowych */
+.text-field {
+    -fx-pref-width: 250px;  /* Szerokość pól tekstowych */
+    -fx-padding: 10px;
+    -fx-border-color: #ccc;
+    -fx-border-width: 1;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-background-color: rgba(255, 255, 255, 0.8);
+}
+
+/* Styl dla przycisku logowania */
+.login-button {
+    -fx-background-color: #4CAF50;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 10px 20px;
+    -fx-background-radius: 10px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 5, 0, 0, 2);
+    -fx-transition: all 0.3s ease;
+    -fx-min-height: 40px;  /* Stała wysokość */
+    -fx-max-height: 40px;  /* Stała wysokość */
+}
+
+.login-button:hover {
+    -fx-background-color: #45a049;
+}
+
+.login-button:pressed {
+    -fx-background-color: #3e8e41;
+}
+
+/* Styl dla etykiet */
+.label {
+    -fx-text-fill: #e0e0e0; /* Jasnoszary tekst dla lepszego kontrastu */
+    -fx-font-size: 14px;    /* Ustalamy rozmiar czcionki */
+    -fx-font-weight: bold;  /* Możemy dodać pogrubienie, aby tekst był bardziej wyrazisty */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.7), 3, 0, 1, 1); /* Cień dla tekstu, żeby był bardziej widoczny */
+}
