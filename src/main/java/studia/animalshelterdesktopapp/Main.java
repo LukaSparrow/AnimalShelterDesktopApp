@@ -4,7 +4,6 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import studia.animalshelterdesktopapp.controllers.LoginView;
 
@@ -29,6 +28,9 @@ public class Main extends Application {
 
             // Ustawienie sceny
             Scene scene = new Scene(root);
+            scene.getStylesheets().add(getClass().getResource("/styles.css").toExternalForm());
+            primaryStage.setMinWidth(640);
+            primaryStage.setMinHeight(480);
             primaryStage.setTitle("Animal Shelter Manager");
             primaryStage.setScene(scene);
             primaryStage.show();

@@ -13,7 +13,7 @@ public class AnimalShelter implements Printable {
     private List<Animal> animalList;
     private int maxCapacity;
     private int animalCount;
-    private double filling;
+    private int filling;
 
     public AnimalShelter(String shelterName, int maxCapacity) {
         this.shelterName = shelterName;
@@ -34,7 +34,7 @@ public class AnimalShelter implements Printable {
     }
 
     public void updateFilling() {
-        this.filling = (double) this.animalCount / (double) this.maxCapacity;
+        this.filling = (int)((double) this.animalCount / (double) this.maxCapacity * 100);
     }
 
     public boolean addAnimal(Animal animal) {
@@ -56,11 +56,11 @@ public class AnimalShelter implements Printable {
 
     public void removeAnimal(Animal animal) {
         this.animalList.remove(animal);
+        --this.animalCount;
+        updateFilling();
     }
 
     public Animal getAnimal(String animalName) {
-        --this.animalCount;
-        updateFilling();
         Animal searchedAnimal = search(animalName);
         changeCondition(searchedAnimal, AnimalCondition.W_TRAKCIE_ADOPCJI);
         animalList.remove(searchedAnimal);
@@ -115,7 +115,7 @@ public class AnimalShelter implements Printable {
         Comparator<Animal> comparator = new Comparator<Animal>() {
             @Override
             public int compare(Animal o1, Animal o2) {
-                if (o1.getAnimalName().contains(textFragment) || o1.getAnimalSpecies().contains(textFragment)) {
+                if (o1.getAnimalName().toLowerCase().contains(textFragment.toLowerCase()) || o1.getAnimalSpecies().toLowerCase().contains(textFragment.toLowerCase())) {
                     return 0;
                 }
                 return 1;
@@ -141,6 +141,14 @@ public class AnimalShelter implements Printable {
 
     public Animal max() {
         return Collections.max(this.animalList, Animal::comparePriceTo);
+    }
+
+    public void setShelterName(String shelterName) {
+        this.shelterName = shelterName;
+    }
+
+    public void setShelterCapacity(int capacity) {
+        this.maxCapacity = capacity;
     }
 
     public int getAnimalCount() {

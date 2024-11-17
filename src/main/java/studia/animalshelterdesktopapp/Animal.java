@@ -14,6 +14,14 @@ public class Animal implements Comparable<Animal>, Printable {
         this.animalPrice = price;
     }
 
+    public Animal(Animal animal) {
+        this.animalName = animal.getAnimalName();
+        this.animalSpecies = animal.getAnimalSpecies();
+        this.animalCondition = animal.getAnimalCondition();
+        this.animalAge = animal.getAnimalAge();
+        this.animalPrice = animal.getAnimalPrice();
+    }
+
     @Override
     public void print() {
         System.out.printf("==================================================================\nImie zwierzecia: %s\nGatunek: %s\nStan: %s\nWiek: %d\nCena: %f\n", this.animalName, this.animalSpecies, this.animalCondition, this.animalAge, this.animalPrice);
@@ -48,6 +56,18 @@ public class Animal implements Comparable<Animal>, Printable {
     @Override
     public int comparePriceTo(Animal otherAnimal) {
         return Double.compare(this.animalPrice, otherAnimal.animalPrice);
+    }
+
+    public void setAnimalName(String name) {
+        this.animalName = name;
+    }
+
+    public void setAnimalSpecies(String species) {
+        this.animalSpecies = species;
+    }
+
+    public void setAnimalPrice(double price) {
+        this.animalPrice = price;
     }
 
     public void setAnimalCondition(AnimalCondition animalCondition) {

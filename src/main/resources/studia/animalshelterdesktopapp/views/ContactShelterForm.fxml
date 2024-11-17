@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.text.Text?>
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="studia.animalshelterdesktopapp.controllers.ContactShelterForm"
+      spacing="10" alignment="CENTER" stylesheets="@/styles.css" styleClass="form-container">
+
+    <Label text="'Dane kontaktowe schroniska'"/>
+    <Text fx:id="contactInfoText" styleClass="text-field"/>
+
+</VBox>

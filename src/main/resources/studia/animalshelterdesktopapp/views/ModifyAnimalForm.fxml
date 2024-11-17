@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="studia.animalshelterdesktopapp.controllers.ModifyAnimalForm"
+      spacing="10" alignment="CENTER" stylesheets="@/styles.css" styleClass="form-container">
+
+    <Label text="Modify Animal" style="-fx-font-size: 24"/>
+
+    <Label text="Name" />
+    <TextField fx:id="animalNameField" promptText="Enter animal name" styleClass="text-field"/>
+
+    <Label text="Species" />
+    <TextField fx:id="animalSpeciesField" promptText="Enter animal species" styleClass="text-field"/>
+
+    <Label text="Condition" />
+    <ComboBox fx:id="animalConditionCombobox" styleClass="combo-box"/>
+
+    <Label text="Age" />
+    <TextField fx:id="animalAgeField" promptText="Enter animal age" styleClass="text-field"/>
+
+    <Label text="Price" />
+    <TextField fx:id="animalPriceField" promptText="Enter animal price" styleClass="text-field"/>
+
+    <Button text="Modify Animal" onAction="#handleModifyAnimal" styleClass="submit-button"/>
+</VBox>

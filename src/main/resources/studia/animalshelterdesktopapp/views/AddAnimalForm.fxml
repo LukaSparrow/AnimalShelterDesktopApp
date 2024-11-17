@@ -3,25 +3,25 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.VBox?>
 
-<?import studia.animalshelterdesktopapp.AnimalCondition?>
-<?import javafx.collections.FXCollections?>
-<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="studia.animalshelterdesktopapp.controllers.AddAnimalForm">
-    <Label text="Add Shelter"/>
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="studia.animalshelterdesktopapp.controllers.AddAnimalForm"
+      spacing="10" alignment="CENTER" stylesheets="@/styles.css" styleClass="form-container">
 
-    <TextField fx:id="animalNameField" promptText="Animal Name"/>
-    <TextField fx:id="animalSpeciesField" promptText="Animal Species"/>
-    <ComboBox fx:id="animalConditionCombobox"/>
-        <!--<items>
-            <FXCollections fx:factory="observableArrayList">
-                <AnimalCondition>ZDROWE</AnimalCondition>
-                <AnimalCondition>CHORE</AnimalCondition>
-                <AnimalCondition>W_TRAKCIE_ADOPCJI</AnimalCondition>
-                <AnimalCondition>KWARANTANNA</AnimalCondition>
-            </FXCollections>
-        </items>
-    </ComboBox>-->
-    <TextField fx:id="animalAgeField" promptText="Animal Age"/>
-    <TextField fx:id="animalPriceField" promptText="Animal Price"/>
+    <Label text="Add Animal" style="-fx-font-size: 24"/>
 
-    <Button text="Add Animal" onAction="#handleAddAnimal"/>
+    <Label text="Name" />
+    <TextField fx:id="animalNameField" promptText="Animal Name" styleClass="text-field"/>
+
+    <Label text="Species" />
+    <TextField fx:id="animalSpeciesField" promptText="Animal Species" styleClass="text-field"/>
+
+    <Label text="Condition" />
+    <ComboBox fx:id="animalConditionCombobox" styleClass="text-field"/>
+
+    <Label text="Age" />
+    <TextField fx:id="animalAgeField" promptText="Animal Age" styleClass="text-field"/>
+
+    <Label text="Price" />
+    <TextField fx:id="animalPriceField" promptText="Animal Price" styleClass="text-field"/>
+
+    <Button text="Add Animal" onAction="#handleAddAnimal" styleClass="submit-button"/>
 </VBox>

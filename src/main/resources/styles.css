@@ -1,3 +1,69 @@
+.bigText {
+    -fx-font-size: 40px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50 !important; /* Wymuszony ciemniejszy kolor */
+}
+
+.form-container {
+    -fx-padding: 30;
+    -fx-background-color: #f0f0f0;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 10, 0, 0, 4);
+}
+
+.form-title {
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1a1a1a; /* Bardziej kontrastujący kolor */
+}
+
+.label {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50 !important; /* Wymuszony ciemniejszy kolor */
+}
+
+.text-field {
+    -fx-pref-width: 300;
+    -fx-padding: 10;
+    -fx-background-color: #ffffff;
+    -fx-border-color: #bdbdbd;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-font-size: 14px;
+    -fx-focus-color: #0077cc;
+}
+
+.combo-box {
+    -fx-pref-width: 300;
+    -fx-padding: 10;
+    -fx-background-color: #ffffff;
+    -fx-border-color: #bdbdbd;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-font-size: 14px;
+}
+
+.submit-button {
+    -fx-background-color: #0077cc;
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 5;
+    -fx-padding: 10 20;
+    -fx-cursor: hand;
+}
+
+.submit-button:hover {
+    -fx-background-color: #005fa3;
+}
+
+.submit-button:pressed {
+    -fx-background-color: #004680;
+}
+
+
 /* Styl dla całego tła */
 .vbox {
     -fx-background-image: url("/studia/animalshelterdesktopapp/views/loginBackground.jpg");
@@ -53,10 +119,128 @@
     -fx-background-color: #3e8e41;
 }
 
-/* Styl dla etykiet */
-.label {
-    -fx-text-fill: #e0e0e0; /* Jasnoszary tekst dla lepszego kontrastu */
-    -fx-font-size: 14px;    /* Ustalamy rozmiar czcionki */
-    -fx-font-weight: bold;  /* Możemy dodać pogrubienie, aby tekst był bardziej wyrazisty */
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.7), 3, 0, 1, 1); /* Cień dla tekstu, żeby był bardziej widoczny */
+/* Stylizacja dla całego GridPane */
+.root {
+    -fx-background-color: #f3f4f6; /* Jasnoszare tło */
+    -fx-padding: 20;
+}
+
+/* Stylizacja dla tabel */
+.table-view {
+    -fx-background-color: white;
+    -fx-border-color: #e0e0e0;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-padding: 10;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: #0077cc; /* Nagłówki tabel w kolorze niebieskim */
+}
+
+.table-column {
+    -fx-alignment: CENTER-LEFT;
+    -fx-text-fill: #333333;
+}
+
+.table-cell {
+    -fx-padding: 8;
+    -fx-text-fill: #333333;
+    -fx-font-size: 13px;
+}
+
+/* Stylizacja dla przycisków */
+.button {
+    -fx-background-color: #0077cc;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8;
+    -fx-padding: 10;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 4, 0, 0, 2);
+}
+
+.button:hover {
+    -fx-background-color: #005fa3;
+}
+
+.button:pressed {
+    -fx-background-color: #004680;
+}
+
+/* Stylizacja dla pól tekstowych */
+.text-field {
+    -fx-background-color: white;
+    -fx-border-color: #cccccc;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-padding: 8;
+    -fx-font-size: 14px;
+}
+
+.text-field:focused {
+    -fx-border-color: #007acc;
+}
+
+/* Stylizacja dla pól wyszukiwania */
+.search-field {
+    -fx-background-color: #f3f4f6;
+    -fx-border-color: #cccccc;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-padding: 8;
+    -fx-font-size: 14px;
+}
+
+.search-field:focused {
+    -fx-border-color: #007acc;
+}
+
+/* Stylizacja dla przycisku wylogowania */
+#logout {
+    -fx-background-color: #cc0000;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8;
+    -fx-padding: 10;
+    -fx-cursor: hand;
+}
+
+#logout:hover {
+    -fx-background-color: #a30000;
+}
+
+#logout:pressed {
+    -fx-background-color: #800000;
+}
+
+/* Nagłówki tabel */
+.table-header-row .label {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+}
+
+/* Przyciski w tabeli */
+.modify-button {
+    -fx-background-color: #ff9800;
+    -fx-text-fill: white;
+    -fx-background-radius: 8;
+    -fx-cursor: hand;
+}
+
+.delete-button {
+    -fx-background-color: #e53935;
+    -fx-text-fill: white;
+    -fx-background-radius: 8;
+    -fx-cursor: hand;
+}
+
+/* Dodatkowe efekty dla przycisków w tabeli */
+.modify-button:hover {
+    -fx-background-color: #f57c00;
+}
+
+.delete-button:hover {
+    -fx-background-color: #c62828;
 }

@@ -11,12 +11,14 @@ public class ShelterManager {
         this.shelters = new HashMap<>();
     }
 
-    public void addShelter(String name, int capacity) {
+    public boolean addShelter(String name, int capacity) {
         this.shelters.put(name, new AnimalShelter(name, capacity));
+        return true;
     }
 
-    public void addShelter(AnimalShelter shelter) {
+    public boolean addShelter(AnimalShelter shelter) {
         this.shelters.put(shelter.getShelterName(), shelter);
+        return true;
     }
 
     public AnimalShelter getShelter(String name) {

@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.*?>
 
-<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="studia.animalshelterdesktopapp.controllers.AddShelterForm"
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="studia.animalshelterdesktopapp.controllers.ModifyShelterForm"
       spacing="15" alignment="CENTER" stylesheets="@/styles.css" styleClass="form-container">
-    <Label text="Add Shelter" style="-fx-font-size: 24"/>
+
+    <Label text="Modify Shelter" style="-fx-font-size: 24"/>
 
     <Label text="Name" />
     <TextField fx:id="shelterNameField" promptText="Shelter Name" styleClass="text-field"/>
     <Label text="Capacity" />
     <TextField fx:id="shelterCapacityField" promptText="Shelter Capacity" styleClass="text-field"/>
 
-    <Button text="Add Shelter" onAction="#handleAddShelter" styleClass="submit-button"/>
+    <Button text="Modify Shelter" onAction="#handleModifyShelter" styleClass="submit-button"/>
 </VBox>

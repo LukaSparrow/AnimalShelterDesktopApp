@@ -8,7 +8,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 import studia.animalshelterdesktopapp.Animal;
@@ -17,7 +16,6 @@ import studia.animalshelterdesktopapp.AnimalShelter;
 import studia.animalshelterdesktopapp.ShelterManager;
 import javafx.util.Callback;
 import java.io.IOException;
-import java.util.Comparator;
 
 public class AdminView {
     private ShelterManager manager;
@@ -30,8 +28,11 @@ public class AdminView {
     public void setManager(ShelterManager manager) {
         this.manager = manager;
         if(this.manager != null) {
-            shelters = FXCollections.observableArrayList(manager.getShelters().values());
-            shelterTable.setItems(shelters);
+            this.shelters = FXCollections.observableArrayList(manager.getShelters().values());
+            this.selectedShelter = shelters.getFirst();
+            this.shelterTable.setItems(shelters);
+            this.animals = FXCollections.observableArrayList(selectedShelter.getAnimalList());
+            this.animalsTable.setItems(animals);
         }
     }
 
@@ -67,7 +68,9 @@ public class AdminView {
             Region root = loader.load();
 
             AddShelterForm addForm = loader.getController();
+            addForm.setManager(this.manager);
             addForm.setShelters(this.shelters);
+            addForm.setShelterTableView(shelterTable);
 
             Stage stage = new Stage();
             stage.setTitle("Add Shelter");
@@ -87,6 +90,7 @@ public class AdminView {
             AddAnimalForm addForm = loader.getController();
             addForm.setAnimals(this.animals);
             addForm.setShelter(this.selectedShelter);
+            addForm.setShelterTableView(this.shelterTable);
 
             Stage stage = new Stage();
             stage.setTitle("Add Animal");
@@ -113,6 +117,7 @@ public class AdminView {
                 shelters.sort(AnimalShelter.nameComparator);
                 break;
         }
+        shelterTable.refresh();
         counter1++;
     }
 
@@ -176,18 +181,16 @@ public class AdminView {
             }
         });
 
-        searchAnimalField.setOnKeyPressed(event -> {
-            if(event.getCode() == KeyCode.ENTER) {
+        searchAnimalField.setOnKeyReleased(event -> {
+            //if(event.getCode() == KeyCode.ENTER) {
                 handleAnimalSearch();
-                System.out.println("chuj");
-            }
+            //}
         });
 
-        searchShelterField.setOnKeyPressed(event -> {
-            if(event.getCode() == KeyCode.ENTER) {
+        searchShelterField.setOnKeyReleased(event -> {
+            //if(event.getCode() == KeyCode.ENTER) {
                 handleShelterSearch();
-                System.out.println("chuj");
-            }
+            //}
         });
     }
 
@@ -301,31 +304,67 @@ public class AdminView {
 
     private void modifyShelter(AnimalShelter shelter) {
         System.out.println("Modifying shelter " + shelter.getShelterName());
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/studia/animalshelterdesktopapp/views/ModifyShelterForm.fxml"));
+            Region root = loader.load();
+
+            ModifyShelterForm modifyForm = loader.getController();
+            modifyForm.setShelter(shelter);
+            modifyForm.initValues();
+            modifyForm.setShelterTableView(this.shelterTable);
+
+            Stage stage = new Stage();
+            stage.setTitle("Modify Shelter");
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void deleteShelter(AnimalShelter shelter) {
         System.out.println("Deleting shelter: " + shelter.getShelterName());
         manager.removeShelter(shelter); // Usunięcie schroniska z bazy danych
         shelterTable.getItems().remove(shelter); // Aktualizacja widoku
+        shelterTable.refresh();
     }
 
     private void modifyAnimal(Animal animal) {
         System.out.println("Modifying animal " + animal.getAnimalName());
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/studia/animalshelterdesktopapp/views/ModifyAnimalForm.fxml"));
+            Region root = loader.load();
+
+            ModifyAnimalForm modifyForm = loader.getController();
+            modifyForm.setAnimal(animal);
+            modifyForm.setAnimals(this.animals);
+            modifyForm.initValues();
+            modifyForm.setShelter(this.selectedShelter);
+            modifyForm.setAnimalTableView(this.animalsTable);
+
+            Stage stage = new Stage();
+            stage.setTitle("Modify Animal");
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void deleteAnimal(Animal animal) {
         System.out.println("Deleting animal: " + animal.getAnimalName());
-        selectedShelter.removeAnimal(animal);
+        this.selectedShelter.removeAnimal(animal);
         animalsTable.getItems().remove(animal);
+        shelterTable.refresh();
     }
 
     private void loadAnimalsForSelectedShelter(AnimalShelter selectedShelter) {
         animals = FXCollections.observableArrayList(selectedShelter.getAnimalList());
         animalsTable.setItems(animals);
+        animalsTable.refresh();
     }
 
-    @FXML
-    private void logOut() {
+    @FXML private void logOut() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/studia/animalshelterdesktopapp/views/LoginView.fxml"));
             Parent root = loader.load();
@@ -335,6 +374,9 @@ public class AdminView {
             newStage.setScene(new Scene(root));
             newStage.setTitle("Animal Shelter Manager");
             newStage.show();
+
+            LoginView loginView = loader.getController();
+            loginView.setManager(manager);
 
             // Zamykamy bieżące okno
             Stage currentStage = (Stage) logout.getScene().getWindow();

@@ -72,12 +72,16 @@ public class LoginView {
                 adminViewController.setManager(this.manager);
             } else {
                 UserView userViewController = loader.getController();
-                //userViewController.setManager(this.manager);
+                userViewController.setManager(this.manager);
             }
 
             // Tworzymy nowe okno
             Stage newStage = new Stage();
-            newStage.setScene(new Scene(root));
+            newStage.setMinWidth(960);
+            newStage.setMinHeight(720);
+            Scene scene = new Scene(root);
+            newStage.setScene(scene);
+            scene.getStylesheets().add(getClass().getResource("/styles.css").toExternalForm());
             newStage.setTitle(title);
             newStage.show();
 
