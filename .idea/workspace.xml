@@ -4,29 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6b3693b8-fb4e-40ba-99e5-29017425f1df" name="Changes" comment="Admin Panel Functionalities">
-      <change afterPath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/controllers/ContactShelterForm.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/controllers/ModifyAnimalForm.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/controllers/ModifyShelterForm.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/studia/animalshelterdesktopapp/views/ContactShelterForm.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/studia/animalshelterdesktopapp/views/ModifyAnimalForm.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/studia/animalshelterdesktopapp/views/ModifyShelterForm.fxml" afterDir="false" />
+    <list default="true" id="6b3693b8-fb4e-40ba-99e5-29017425f1df" name="Changes" comment="User Panel + some beautification">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/Animal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/Animal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/AnimalShelter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/AnimalShelter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/ShelterManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/ShelterManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/controllers/AddAnimalForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/controllers/AddAnimalForm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/controllers/AddShelterForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/controllers/AddShelterForm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/controllers/AdminView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/controllers/AdminView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/controllers/LoginView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/controllers/LoginView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/controllers/UserView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/controllers/UserView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/studia/animalshelterdesktopapp/views/AddAnimalForm.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/studia/animalshelterdesktopapp/views/AddAnimalForm.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/studia/animalshelterdesktopapp/views/AddShelterForm.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/studia/animalshelterdesktopapp/views/AddShelterForm.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/studia/animalshelterdesktopapp/views/AdminView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/studia/animalshelterdesktopapp/views/AdminView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/studia/animalshelterdesktopapp/views/LoginView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/studia/animalshelterdesktopapp/views/LoginView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/studia/animalshelterdesktopapp/views/UserView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/studia/animalshelterdesktopapp/views/UserView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/styles.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,6 +71,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "Errors",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -131,7 +111,7 @@
       <updated>1731263679427</updated>
       <workItem from="1731263680458" duration="10643000" />
       <workItem from="1731759106858" duration="39549000" />
-      <workItem from="1731850436067" duration="22908000" />
+      <workItem from="1731850436067" duration="23103000" />
     </task>
     <task id="LOCAL-00001" summary="Admin Panel Functionalities">
       <option name="closed" value="true" />
@@ -141,7 +121,15 @@
       <option name="project" value="LOCAL" />
       <updated>1731805788904</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="User Panel + some beautification">
+      <option name="closed" value="true" />
+      <created>1731883485031</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1731883485031</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -160,6 +148,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Admin Panel Functionalities" />
-    <option name="LAST_COMMIT_MESSAGE" value="Admin Panel Functionalities" />
+    <MESSAGE value="User Panel + some beautification" />
+    <option name="LAST_COMMIT_MESSAGE" value="User Panel + some beautification" />
   </component>
 </project>
