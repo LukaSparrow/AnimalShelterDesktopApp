@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.VBox?>
+
+<?import studia.animalshelterdesktopapp.AnimalCondition?>
+<?import javafx.collections.FXCollections?>
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="studia.animalshelterdesktopapp.controllers.AddAnimalForm">
+    <Label text="Add Shelter"/>
+
+    <TextField fx:id="animalNameField" promptText="Animal Name"/>
+    <TextField fx:id="animalSpeciesField" promptText="Animal Species"/>
+    <ComboBox fx:id="animalConditionCombobox"/>
+        <!--<items>
+            <FXCollections fx:factory="observableArrayList">
+                <AnimalCondition>ZDROWE</AnimalCondition>
+                <AnimalCondition>CHORE</AnimalCondition>
+                <AnimalCondition>W_TRAKCIE_ADOPCJI</AnimalCondition>
+                <AnimalCondition>KWARANTANNA</AnimalCondition>
+            </FXCollections>
+        </items>
+    </ComboBox>-->
+    <TextField fx:id="animalAgeField" promptText="Animal Age"/>
+    <TextField fx:id="animalPriceField" promptText="Animal Price"/>
+
+    <Button text="Add Animal" onAction="#handleAddAnimal"/>
+</VBox>

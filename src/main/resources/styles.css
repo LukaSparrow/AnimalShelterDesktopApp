@@ -1,6 +1,6 @@
 /* Styl dla całego tła */
 .vbox {
-    -fx-background-image: url("/studia/animalshelterdesktopapp/views/kurwa.jpg");
+    -fx-background-image: url("/studia/animalshelterdesktopapp/views/loginBackground.jpg");
     -fx-background-size: cover;          /* Tło wypełnia całe okno */
     -fx-background-position: center;     /* Tło jest wyśrodkowane */
     -fx-background-repeat: no-repeat;    /* Tło się nie powtarza */

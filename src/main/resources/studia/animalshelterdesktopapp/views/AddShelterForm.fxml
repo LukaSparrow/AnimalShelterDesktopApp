@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="studia.animalshelterdesktopapp.controllers.AddShelterForm">
+    <Label text="Add Shelter"/>
+
+    <TextField fx:id="shelterNameField" promptText="Shelter Name"/>
+    <TextField fx:id="shelterCapacityField" promptText="Shelter Capacity"/>
+
+    <Button text="Add Shelter" onAction="#handleAddShelter"/>
+</VBox>

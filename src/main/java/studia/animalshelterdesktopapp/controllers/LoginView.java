@@ -9,7 +9,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javafx.scene.effect.GaussianBlur;
+import studia.animalshelterdesktopapp.ShelterManager;
 
 import java.io.IOException;
 
@@ -26,10 +26,16 @@ public class LoginView {
     @FXML
     private VBox vbox;
 
+    private ShelterManager manager;
+
+    public void setManager(ShelterManager manager) {
+        this.manager = manager;
+    }
+
     @FXML
     private void initialize() {
         try {
-            String backgroundPath = getClass().getResource("/studia/animalshelterdesktopapp/views/kurwa.jpg").toExternalForm();
+            String backgroundPath = getClass().getResource("/studia/animalshelterdesktopapp/views/loginBackground.jpg").toExternalForm();
             vbox.setStyle("-fx-background-image: url('" + backgroundPath + "'); " +
                     "-fx-background-size: cover; " +
                     "-fx-background-position: center; " +
@@ -60,6 +66,14 @@ public class LoginView {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/studia/animalshelterdesktopapp/views/" + fxmlFile));
             Parent root = loader.load();
+
+            if(title.equals("Administrator")) {
+                AdminView adminViewController = loader.getController();
+                adminViewController.setManager(this.manager);
+            } else {
+                UserView userViewController = loader.getController();
+                //userViewController.setManager(this.manager);
+            }
 
             // Tworzymy nowe okno
             Stage newStage = new Stage();
