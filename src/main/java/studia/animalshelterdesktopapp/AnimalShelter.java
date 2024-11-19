@@ -113,7 +113,7 @@ public class AnimalShelter implements Printable {
         Comparator<Animal> comparator = new Comparator<Animal>() {
             @Override
             public int compare(Animal o1, Animal o2) {
-                if (o1.getAnimalName().toLowerCase().contains(textFragment.toLowerCase()) || o1.getAnimalSpecies().toLowerCase().contains(textFragment.toLowerCase())) {
+                if (o1.getAnimalName().toLowerCase().contains(textFragment.toLowerCase()) || o1.getAnimalSpecies().toLowerCase().contains(textFragment.toLowerCase()) || o1.getAnimalCondition().toString().toLowerCase().contains(textFragment.toLowerCase())) {
                     return 0;
                 }
                 return 1;

@@ -5,16 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6b3693b8-fb4e-40ba-99e5-29017425f1df" name="Changes" comment="Unit tests, and final polishes">
-      <change afterPath="$PROJECT_DIR$/src/test/java/studia/animalshelterdesktopapp/AnimalShelterTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/studia/animalshelterdesktopapp/AnimalTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/studia/animalshelterdesktopapp/DataGeneratorTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/studia/animalshelterdesktopapp/ShelterManagerTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/Animal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/Animal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/AnimalCondition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/AnimalCondition.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/DataGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/DataGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/controllers/AdminView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/controllers/AdminView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/AnimalShelter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/AnimalShelter.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,40 +64,40 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.AdminView.executor": "Run",
-    "Application.AnimalShelterDesktopApp.executor": "Run",
-    "Application.HelloApplication.executor": "Run",
-    "Application.Main.executor": "Run",
-    "Downloaded.Files.Path.Enabled": "false",
-    "JUnit.All in AnimalShelterDesktopApp.executor": "Coverage",
-    "JUnit.AnimalTest.executor": "Run",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Łukasz/IdeaProjects/AnimalShelterDesktopApp/javafx-fxml-23.0.1.jar",
-    "list.type.of.created.stylesheet": "CSS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.40679613",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "coverage",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.AdminView.executor&quot;: &quot;Run&quot;,
+    &quot;Application.AnimalShelterDesktopApp.executor&quot;: &quot;Run&quot;,
+    &quot;Application.HelloApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;JUnit.All in AnimalShelterDesktopApp.executor&quot;: &quot;Coverage&quot;,
+    &quot;JUnit.AnimalTest.executor&quot;: &quot;Run&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Łukasz/IdeaProjects/AnimalShelterDesktopApp/javafx-fxml-23.0.1.jar&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.40679613&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;coverage&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Łukasz\IdeaProjects\AnimalShelterDesktopApp\src\main\resources\studia\animalshelterdesktopapp\views" />
@@ -121,7 +113,7 @@
       <recent name="studia.animalshelterdesktopapp" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.All in AnimalShelterDesktopApp">
+  <component name="RunManager" selected="Application.AnimalShelterDesktopApp">
     <configuration name="AnimalShelterDesktopApp" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="studia.animalshelterdesktopapp.Main" />
       <module name="AnimalShelterDesktopApp" />
@@ -186,7 +178,8 @@
       <workItem from="1731936191524" duration="22572000" />
       <workItem from="1732011942655" duration="1740000" />
       <workItem from="1732013834569" duration="858000" />
-      <workItem from="1732014908620" duration="3829000" />
+      <workItem from="1732014908620" duration="4045000" />
+      <workItem from="1732057832208" duration="146000" />
     </task>
     <task id="LOCAL-00001" summary="Admin Panel Functionalities">
       <option name="closed" value="true" />
@@ -228,7 +221,15 @@
       <option name="project" value="LOCAL" />
       <updated>1731976158976</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Unit tests, and final polishes">
+      <option name="closed" value="true" />
+      <created>1732018854858</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1732018854858</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
