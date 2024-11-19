@@ -4,14 +4,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6b3693b8-fb4e-40ba-99e5-29017425f1df" name="Changes" comment="Exceptions addition and handling added, superclass for admin and user views controllers added.">
+    <list default="true" id="6b3693b8-fb4e-40ba-99e5-29017425f1df" name="Changes" comment="Unit tests, and final polishes">
+      <change afterPath="$PROJECT_DIR$/src/test/java/studia/animalshelterdesktopapp/AnimalShelterTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/studia/animalshelterdesktopapp/AnimalTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/studia/animalshelterdesktopapp/DataGeneratorTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/studia/animalshelterdesktopapp/ShelterManagerTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/Animal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/Animal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/AnimalCondition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/AnimalCondition.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/DataGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/DataGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/controllers/AdminView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/controllers/AdminView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CoverageOptionsProvider">
+    <option name="myAddOrReplace" value="0" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -20,6 +31,7 @@
         <option value="FxmlFile" />
         <option value="Exception" />
         <option value="Class" />
+        <option value="JUnit5 Test Class" />
       </list>
     </option>
   </component>
@@ -67,11 +79,16 @@
     "Application.HelloApplication.executor": "Run",
     "Application.Main.executor": "Run",
     "Downloaded.Files.Path.Enabled": "false",
+    "JUnit.All in AnimalShelterDesktopApp.executor": "Coverage",
+    "JUnit.AnimalTest.executor": "Run",
     "Repository.Attach.Annotations": "false",
     "Repository.Attach.JavaDocs": "false",
     "Repository.Attach.Sources": "false",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/Łukasz/IdeaProjects/AnimalShelterDesktopApp/javafx-fxml-23.0.1.jar",
@@ -85,7 +102,7 @@
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.40679613",
     "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "Errors",
+    "settings.editor.selected.configurable": "coverage",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -94,24 +111,63 @@
       <recent name="C:\Users\Łukasz\IdeaProjects\AnimalShelterDesktopApp\src\main\resources\studia\animalshelterdesktopapp\views" />
       <recent name="C:\Users\Łukasz\IdeaProjects\AnimalShelterDesktopApp\src\main\resources" />
     </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="studia.animalshelterdesktopapp" />
     </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="studia.animalshelterdesktopapp" />
+    </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JUnit.All in AnimalShelterDesktopApp">
     <configuration name="AnimalShelterDesktopApp" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="studia.animalshelterdesktopapp.Main" />
       <module name="AnimalShelterDesktopApp" />
+      <option name="VM_PARAMETERS" value="-Dfile.encoding=UTF-8" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="All in AnimalShelterDesktopApp" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="AnimalShelterDesktopApp" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="studia.animalshelterdesktopapp.controllers.*" />
+          <option name="ENABLED" value="true" />
+          <option name="INCLUDE" value="false" />
+        </pattern>
+        <pattern>
+          <option name="PATTERN" value="studia.animalshelterdesktopapp.Main" />
+          <option name="ENABLED" value="true" />
+          <option name="INCLUDE" value="false" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <option name="VM_PARAMETERS" value="-Dfile.encoding=UTF-8" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.AnimalShelterDesktopApp" />
+      <item itemvalue="JUnit.All in AnimalShelterDesktopApp" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.All in AnimalShelterDesktopApp" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-28b599e66164-intellij.indexing.shared.core-IU-242.23726.103" />
-        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-IU-242.23726.103" />
+        <option value="bundled-jdk-9823dce3aa75-fdfe4dae3a2d-intellij.indexing.shared.core-IU-243.21565.193" />
+        <option value="bundled-js-predefined-d6986cc7102b-e768b9ed790e-JavaScript-IU-243.21565.193" />
       </set>
     </attachedChunks>
   </component>
@@ -127,7 +183,10 @@
       <workItem from="1731759106858" duration="39549000" />
       <workItem from="1731850436067" duration="23126000" />
       <workItem from="1731918906705" duration="51000" />
-      <workItem from="1731936191524" duration="22508000" />
+      <workItem from="1731936191524" duration="22572000" />
+      <workItem from="1732011942655" duration="1740000" />
+      <workItem from="1732013834569" duration="858000" />
+      <workItem from="1732014908620" duration="3829000" />
     </task>
     <task id="LOCAL-00001" summary="Admin Panel Functionalities">
       <option name="closed" value="true" />
@@ -161,7 +220,15 @@
       <option name="project" value="LOCAL" />
       <updated>1731975883900</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Exceptions addition and handling added, superclass for admin and user views controllers added.">
+      <option name="closed" value="true" />
+      <created>1731976158976</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1731976158976</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -179,9 +246,26 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="LOCAL_CHANGES_DETAILS_PREVIEW_SHOWN" value="false" />
     <MESSAGE value="Admin Panel Functionalities" />
     <MESSAGE value="User Panel + some beautification" />
     <MESSAGE value="Exceptions addition and handling added, superclass for admin and user views controllers added." />
-    <option name="LAST_COMMIT_MESSAGE" value="Exceptions addition and handling added, superclass for admin and user views controllers added." />
+    <MESSAGE value="Unit tests, and final polishes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Unit tests, and final polishes" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/AnimalShelterDesktopApp$AnimalTest.exec" NAME="AnimalTest Coverage Results" MODIFIED="1732014017335" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="jacoco" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>studia.animalshelterdesktopapp.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/AnimalShelterDesktopApp$AnimalTest.ic" NAME="AnimalTest Coverage Results" MODIFIED="1732015024007" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>studia.animalshelterdesktopapp.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/AnimalShelterDesktopApp$AnimalShelterDesktopApp.exec" NAME="AnimalShelterDesktopApp Coverage Results" MODIFIED="1732014269681" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="jacoco" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+    <SUITE FILE_PATH="coverage/AnimalShelterDesktopApp$AnimalShelterDesktopApp.ic" NAME="AnimalShelterDesktopApp Coverage Results" MODIFIED="1732018373454" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+    <SUITE FILE_PATH="coverage/AnimalShelterDesktopApp$All_in_AnimalShelterDesktopApp.exec" NAME="All in AnimalShelterDesktopApp Coverage Results" MODIFIED="1732014233115" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="jacoco" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+    <SUITE FILE_PATH="coverage/AnimalShelterDesktopApp$All_in_AnimalShelterDesktopApp.ic" NAME="All in AnimalShelterDesktopApp Coverage Results" MODIFIED="1732018441288" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <EXCLUDED_FILTER>studia.animalshelterdesktopapp.controllers.*</EXCLUDED_FILTER>
+      <EXCLUDED_FILTER>studia.animalshelterdesktopapp.Main</EXCLUDED_FILTER>
+    </SUITE>
   </component>
 </project>

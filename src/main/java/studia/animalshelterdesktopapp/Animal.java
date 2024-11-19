@@ -1,4 +1,5 @@
 package studia.animalshelterdesktopapp;
+
 public class Animal implements Comparable<Animal>, Printable {
     private String animalName;
     private String animalSpecies;
@@ -24,7 +25,7 @@ public class Animal implements Comparable<Animal>, Printable {
 
     @Override
     public void print() {
-        System.out.printf("==================================================================\nImie zwierzecia: %s\nGatunek: %s\nStan: %s\nWiek: %d\nCena: %f\n", this.animalName, this.animalSpecies, this.animalCondition, this.animalAge, this.animalPrice);
+        System.out.printf("==================================================================\nImie zwierzecia: %s\nGatunek: %s\nStan: %s\nWiek: %d\nCena: %.2f\n", this.animalName, this.animalSpecies, this.animalCondition, this.animalAge, this.animalPrice);
     }
 
     @Override

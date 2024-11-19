@@ -76,7 +76,7 @@ public class AdminView extends AppView {
         animalCondition.setCellValueFactory(new PropertyValueFactory<>("animalCondition"));
         animalAge.setCellValueFactory(new PropertyValueFactory<>("animalAge"));
         animalPrice.setCellValueFactory(new PropertyValueFactory<>("animalPrice"));
-        animalPrice.setCellFactory(column -> new TextFieldTableCell<>(new StringConverter<Double>() {
+        animalPrice.setCellFactory(column -> new TextFieldTableCell<>(new StringConverter<>() {
             @Override
             public String toString(Double value) {
                 // Formatowanie do dwóch miejsc po przecinku
@@ -102,7 +102,7 @@ public class AdminView extends AppView {
                 try {
                     loadAnimalsForSelectedShelter(selectedShelter);
                 } catch (ShelterNotFoundException shelterNotFoundException) {
-                    System.err.println("Schronisko nie istnieje.");
+                    System.err.println(shelterNotFoundException.getMessage());
                 }
             } else {
                 animalsTable.getItems().clear();
@@ -131,7 +131,7 @@ public class AdminView extends AppView {
                     try {
                         modifyShelter(shelter);
                     } catch (ShelterNotFoundException shelterNotFoundException) {
-                        System.err.println("Schronisko nie istnieje.");
+                        System.err.println(shelterNotFoundException.getMessage());
                     }
                 });
             }
