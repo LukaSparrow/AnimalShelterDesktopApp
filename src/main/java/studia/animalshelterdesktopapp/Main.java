@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 import studia.animalshelterdesktopapp.controllers.LoginView;
 import studia.animalshelterdesktopapp.exceptions.ManagerNotFoundException;
 import java.io.IOException;
+import java.util.Objects;
 
 public class Main extends Application {
     @Override
@@ -24,7 +25,7 @@ public class Main extends Application {
 
             // Ustawienie sceny
             Scene scene = new Scene(root);
-            scene.getStylesheets().add(getClass().getResource("/styles.css").toExternalForm());
+            scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/styles.css")).toExternalForm());
             primaryStage.setMinWidth(640);
             primaryStage.setMinHeight(480);
             primaryStage.setTitle("Animal Shelter Manager");
