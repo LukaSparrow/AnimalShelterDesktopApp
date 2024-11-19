@@ -10,30 +10,28 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import studia.animalshelterdesktopapp.ShelterManager;
+import studia.animalshelterdesktopapp.exceptions.ManagerNotFoundException;
 
 import java.io.IOException;
 
 public class LoginView {
-    @FXML
-    private TextField username;
 
-    @FXML
-    private PasswordField password;
-
-    @FXML
-    private Text loginResult;
-
-    @FXML
-    private VBox vbox;
+    @FXML private TextField username;
+    @FXML private PasswordField password;
+    @FXML private Text loginResult;
+    @FXML private VBox vbox;
 
     private ShelterManager manager;
 
-    public void setManager(ShelterManager manager) {
+    public void setManager(ShelterManager manager) throws ManagerNotFoundException {
+        if(manager == null)
+        {
+            throw new ManagerNotFoundException("Manager nie istnieje.");
+        }
         this.manager = manager;
     }
 
-    @FXML
-    private void initialize() {
+    @FXML private void initialize() {
         try {
             String backgroundPath = getClass().getResource("/studia/animalshelterdesktopapp/views/loginBackground.jpg").toExternalForm();
             vbox.setStyle("-fx-background-image: url('" + backgroundPath + "'); " +
@@ -46,8 +44,7 @@ public class LoginView {
         }
     }
 
-    @FXML
-    private void login() {
+    @FXML private void login() {
         if(username.getText().equals("admin") && password.getText().equals("admin")) {
             System.out.println("Login Successful admin");
             loadView("AdminView.fxml", "Administrator");
@@ -88,9 +85,13 @@ public class LoginView {
             // Zamykamy bieżące okno
             Stage currentStage = (Stage) username.getScene().getWindow();
             currentStage.close();
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             System.err.println("Error loading view: " + e.getMessage());
-            e.printStackTrace();
+            System.err.println("Failed to load FXML file.");
+        }
+        catch (ManagerNotFoundException e) {
+            System.err.println(e.getMessage());
         }
     }
 }

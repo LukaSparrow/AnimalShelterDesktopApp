@@ -2,6 +2,7 @@ package studia.animalshelterdesktopapp.controllers;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -54,27 +55,52 @@ public class ModifyAnimalForm {
         animalPriceField.setText(String.valueOf(animal.getAnimalPrice()));
     }
 
+    private void showAlert(Alert.AlertType type, String title, String message) {
+        Alert alert = new Alert(type);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    // Metoda sprawdzająca, czy wyjątek został rzucony przez Integer.parseInt()
+    public static boolean wasThrownByParseInt(NumberFormatException e) {
+        return AddAnimalForm.wasThrownByParseInt(e);
+    }
+
     @FXML
     private void handleModifyAnimal() {
-        String animalName = animalNameField.getText();
-        String animalSpecies = animalSpeciesField.getText();
-        AnimalCondition animalCondition = animalConditionCombobox.getValue();
-        String animalAge = animalAgeField.getText();
-        String animalPrice = animalPriceField.getText();
-
         try {
+            String animalName = animalNameField.getText();
+            String animalSpecies = animalSpeciesField.getText();
+            AnimalCondition animalCondition = animalConditionCombobox.getValue();
+            String animalAge = animalAgeField.getText();
+            String animalPrice = animalPriceField.getText();
+
             int animalAgeInt = parseInt(animalAge);
             double animalPriceDouble = parseFloat(animalPrice);
+
             if(!animalName.isEmpty()) this.animal.setAnimalName(animalName);
             if(!animalSpecies.isEmpty()) this.animal.setAnimalSpecies(animalSpecies);
             if(animalCondition != null) this.animal.setAnimalCondition(animalCondition);
             if(animalAgeInt != 0) this.animal.setAnimalAge(animalAgeInt);
             if(animalPriceDouble != 0) this.animal.setAnimalPrice(animalPriceDouble);
-            this.animalTableView.refresh();
-        } catch (NumberFormatException e) {
-            e.printStackTrace();
-        }
 
-        ((Stage)animalNameField.getScene().getWindow()).close();
+            this.animalTableView.refresh();
+            ((Stage)animalNameField.getScene().getWindow()).close();
+        } catch (NumberFormatException e) {
+            StackTraceElement[] stackTrace = e.getStackTrace();
+
+            if (stackTrace.length > 0) {
+                StackTraceElement thrower = stackTrace[0];
+                if(wasThrownByParseInt(e)) {
+                    System.err.println("Nieprawidlowy wiek zwierzecia.");
+                    showAlert(Alert.AlertType.INFORMATION, "Nieprawidlowe dane", "Nieprawidlowy wiek zwierzecia.");
+                } else {
+                    System.err.println("Nieprawidlowa cena zwierzecia.");
+                    showAlert(Alert.AlertType.INFORMATION, "Nieprawidlowe dane", "Nieprawidlowa cena zwierzecia.");
+                }
+            }
+        }
     }
 }

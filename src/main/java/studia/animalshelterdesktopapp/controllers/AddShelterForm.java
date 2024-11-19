@@ -8,6 +8,8 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import studia.animalshelterdesktopapp.AnimalShelter;
 import studia.animalshelterdesktopapp.ShelterManager;
+import studia.animalshelterdesktopapp.exceptions.InvalidCapacityException;
+import studia.animalshelterdesktopapp.exceptions.ShelterAlreadyExistsException;
 
 import static java.lang.Integer.parseInt;
 
@@ -39,23 +41,30 @@ public class AddShelterForm {
     }
 
     @FXML private void handleAddShelter() {
-        String shelterName = shelterNameField.getText();
-        String shelterCapacityString = shelterCapacityField.getText();
+        try {
+            String shelterName = shelterNameField.getText();
+            String shelterCapacityString = shelterCapacityField.getText();
 
-        if(!shelterName.isEmpty() && !shelterCapacityString.isEmpty()) {
-            try {
+            if (!shelterName.isEmpty() && !shelterCapacityString.isEmpty()) {
                 int shelterCapacity = parseInt(shelterCapacityString);
-                if(this.manager.addShelter(new AnimalShelter(shelterName, shelterCapacity))) {
+
+                if (this.manager.addShelter(new AnimalShelter(shelterName, shelterCapacity))) {
                     this.shelters.add(new AnimalShelter(shelterName, shelterCapacity));
                     this.shelterTableView.refresh();
+                    ((Stage) shelterNameField.getScene().getWindow()).close();
                 }
-                ((Stage) shelterNameField.getScene().getWindow()).close();
-            } catch (NumberFormatException e) {
-                e.printStackTrace();
-                showAlert(Alert.AlertType.INFORMATION, "Nieprawidlowe dane", "Pojemnosc schroniska musi byc wartoscia liczbowa.");
+            } else {
+                System.err.println("Wszystkie dane schroniska musza byc podane.");
+                showAlert(Alert.AlertType.INFORMATION, "Nieprawidlowe dane", "Wszystkie dane schroniska musza byc podane.");
             }
-        } else {
-            showAlert(Alert.AlertType.INFORMATION, "Nieprawidlowe dane", "Wszystkie dane schroniska musza byc podane.");
+        }
+        catch (NumberFormatException e) {
+            System.err.println("Pojemnosc schroniska musi byc wartoscia liczbowa.");
+            showAlert(Alert.AlertType.INFORMATION, "Nieprawidlowe dane", e.getMessage());
+        }
+        catch (InvalidCapacityException | ShelterAlreadyExistsException e) {
+            System.err.println(e.getMessage());
+            showAlert(Alert.AlertType.INFORMATION, "Nieprawidlowe dane", e.getMessage());
         }
     }
 }

@@ -6,4 +6,6 @@ module studia.animalshelterdesktopapp {
     opens studia.animalshelterdesktopapp.controllers to javafx.fxml;
     opens studia.animalshelterdesktopapp.views to javafx.fxml;
     exports studia.animalshelterdesktopapp;
+    exports studia.animalshelterdesktopapp.controllers;
+    exports studia.animalshelterdesktopapp.exceptions;
 }

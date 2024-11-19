@@ -5,7 +5,32 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6b3693b8-fb4e-40ba-99e5-29017425f1df" name="Changes" comment="User Panel + some beautification">
+      <change afterPath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/DataGenerator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/controllers/AppView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/exceptions/AnimalAlreadyExistsException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/exceptions/AnimalNotFoundException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/exceptions/InvalidCapacityException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/exceptions/ManagerNotFoundException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/exceptions/NotEnoughCapacityException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/exceptions/ShelterAlreadyExistsException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/exceptions/ShelterNotFoundException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/AnimalShelter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/AnimalShelter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/ShelterManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/ShelterManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/controllers/AddAnimalForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/controllers/AddAnimalForm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/controllers/AddShelterForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/controllers/AddShelterForm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/controllers/AdminView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/controllers/AdminView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/controllers/ContactShelterForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/controllers/ContactShelterForm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/controllers/LoginView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/controllers/LoginView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/controllers/ModifyAnimalForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/controllers/ModifyAnimalForm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/controllers/ModifyShelterForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/controllers/ModifyShelterForm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/controllers/UserView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/controllers/UserView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/studia/animalshelterdesktopapp/views/AdminView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/studia/animalshelterdesktopapp/views/AdminView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/studia/animalshelterdesktopapp/views/LoginView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/studia/animalshelterdesktopapp/views/LoginView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/studia/animalshelterdesktopapp/views/UserView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/studia/animalshelterdesktopapp/views/UserView.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,6 +42,7 @@
       <list>
         <option value="CSS File" />
         <option value="FxmlFile" />
+        <option value="Exception" />
         <option value="Class" />
       </list>
     </option>
@@ -61,16 +87,25 @@
     "Application.AnimalShelterDesktopApp.executor": "Run",
     "Application.HelloApplication.executor": "Run",
     "Application.Main.executor": "Run",
+    "Downloaded.Files.Path.Enabled": "false",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Łukasz/IdeaProjects/AnimalShelterDesktopApp/javafx-fxml-23.0.1.jar",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.40679613",
+    "run.code.analysis.last.selected.profile": "pProject Default",
     "settings.editor.selected.configurable": "Errors",
     "vue.rearranger.settings.migration": "true"
   }
@@ -111,7 +146,9 @@
       <updated>1731263679427</updated>
       <workItem from="1731263680458" duration="10643000" />
       <workItem from="1731759106858" duration="39549000" />
-      <workItem from="1731850436067" duration="23103000" />
+      <workItem from="1731850436067" duration="23126000" />
+      <workItem from="1731918906705" duration="51000" />
+      <workItem from="1731936191524" duration="21872000" />
     </task>
     <task id="LOCAL-00001" summary="Admin Panel Functionalities">
       <option name="closed" value="true" />
@@ -129,7 +166,15 @@
       <option name="project" value="LOCAL" />
       <updated>1731883485031</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="User Panel + some beautification">
+      <option name="closed" value="true" />
+      <created>1731883659775</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1731883659775</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

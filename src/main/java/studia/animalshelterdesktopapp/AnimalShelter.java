@@ -1,12 +1,13 @@
 package studia.animalshelterdesktopapp;
 
-import java.lang.Comparable;
+import studia.animalshelterdesktopapp.exceptions.AnimalAlreadyExistsException;
+import studia.animalshelterdesktopapp.exceptions.InvalidCapacityException;
+import studia.animalshelterdesktopapp.exceptions.NotEnoughCapacityException;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-
-import static java.util.Objects.compare;
 
 public class AnimalShelter implements Printable {
     private String shelterName;
@@ -37,21 +38,18 @@ public class AnimalShelter implements Printable {
         this.filling = (int)((double) this.animalCount / (double) this.maxCapacity * 100);
     }
 
-    public boolean addAnimal(Animal animal) {
+    public void addAnimal(Animal animal) throws AnimalAlreadyExistsException, NotEnoughCapacityException {
         if(this.animalCount >= this.maxCapacity) {
-            System.err.println("Brak miejsc w schronisku.");
-            return false;
+            throw new NotEnoughCapacityException("Brak miejsc w schronisku.");
         }
         for (Animal loopAnimal : animalList) {
             if (loopAnimal.compareTo(animal) == 0) {
-                System.err.println("Zwierze juz znajduje sie w schronisku.");
-                return false;
+                throw new AnimalAlreadyExistsException("Zwierze juz znajduje sie w schronisku.");
             }
         }
         ++this.animalCount;
         updateFilling();
         this.animalList.add(animal);
-        return true;
     }
 
     public void removeAnimal(Animal animal) {
@@ -147,7 +145,10 @@ public class AnimalShelter implements Printable {
         this.shelterName = shelterName;
     }
 
-    public void setShelterCapacity(int capacity) {
+    public void setShelterCapacity(int capacity) throws InvalidCapacityException {
+        if(capacity <= 0) {
+            throw new InvalidCapacityException("Pojemnosc schroniska musi byc wieksza od zera.");
+        }
         this.maxCapacity = capacity;
     }
 

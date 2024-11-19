@@ -1,6 +1,8 @@
 package studia.animalshelterdesktopapp;
 
-import javafx.collections.ObservableList;
+import studia.animalshelterdesktopapp.exceptions.InvalidCapacityException;
+import studia.animalshelterdesktopapp.exceptions.ShelterAlreadyExistsException;
+
 
 import java.util.*;
 
@@ -11,12 +13,24 @@ public class ShelterManager {
         this.shelters = new HashMap<>();
     }
 
-    public boolean addShelter(String name, int capacity) {
+    public boolean addShelter(String name, int capacity) throws InvalidCapacityException, ShelterAlreadyExistsException {
+        if(capacity <= 0) {
+            throw new InvalidCapacityException("Pojemnosc schroniska musi byc wieksza od zera.");
+        }
+        if(shelters.containsKey(name)) {
+            throw new ShelterAlreadyExistsException("Schronisko o takiej nazwie juz istnieje.");
+        }
         this.shelters.put(name, new AnimalShelter(name, capacity));
         return true;
     }
 
-    public boolean addShelter(AnimalShelter shelter) {
+    public boolean addShelter(AnimalShelter shelter) throws InvalidCapacityException, ShelterAlreadyExistsException {
+        if(shelter.getMaxCapacity() <= 0) {
+            throw new InvalidCapacityException("Pojemnosc schroniska musi byc wieksza od zera.");
+        }
+        if(shelters.containsKey(shelter.getShelterName())) {
+            throw new ShelterAlreadyExistsException("Schronisko o takiej nazwie juz istnieje.");
+        }
         this.shelters.put(shelter.getShelterName(), shelter);
         return true;
     }
@@ -51,7 +65,7 @@ public class ShelterManager {
 
     public void removeShelter(AnimalShelter shelter) {
         if(shelters.containsKey(shelter.getShelterName())) {
-            shelters.remove(shelter);
+            shelters.remove(shelter.getShelterName());
         } else {
             System.err.println("Schronisko o takiej nazwie nie istnieje.");
         }

@@ -6,18 +6,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.stage.Stage;
 import studia.animalshelterdesktopapp.controllers.LoginView;
+import studia.animalshelterdesktopapp.exceptions.ManagerNotFoundException;
+import java.io.IOException;
 
 public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
-            ShelterManager manager = new ShelterManager();
-            AnimalShelter s1 = new AnimalShelter("Zjebowowo", 7);
-            s1.addAnimal(new Animal("Janusz", "Korwin", AnimalCondition.CHORE, 12, 9999));
-            s1.addAnimal(new Animal("hahaha", "sd", AnimalCondition.CHORE, 12, 1231));
-            s1.addAnimal(new Animal("ggaba", "aaa", AnimalCondition.CHORE, 12, 995599));
-            manager.addShelter("Zjebowo", 10);
-            manager.addShelter(s1);
+            ShelterManager manager = DataGenerator.getInstance().generateData();
 
             // Wczytanie pliku FXML
             FXMLLoader loader = new FXMLLoader(getClass().getResource("views/LoginView.fxml"));
@@ -35,8 +31,13 @@ public class Main extends Application {
             primaryStage.setScene(scene);
             primaryStage.show();
 
-        } catch (Exception e) {
-            e.printStackTrace();
+        }
+        catch (IOException e) {
+            System.err.println("Error loading view: " + e.getMessage());
+            System.err.println("Failed to load FXML file.");
+        }
+        catch (ManagerNotFoundException e) {
+            System.err.println(e.getMessage());
         }
     }
 

@@ -1,11 +1,12 @@
 package studia.animalshelterdesktopapp.controllers;
 
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import studia.animalshelterdesktopapp.AnimalShelter;
+import studia.animalshelterdesktopapp.exceptions.InvalidCapacityException;
 
 import static java.lang.Integer.parseInt;
 
@@ -28,33 +29,40 @@ public class ModifyShelterForm {
         this.shelterCapacityField.setText(String.valueOf(this.shelter.getMaxCapacity()));
     }
 
-    @FXML
-    private void handleModifyShelter() {
-        String shelterName = shelterNameField.getText();
-        String shelterCapacityString = shelterCapacityField.getText();
+    private void showAlert(Alert.AlertType type, String title, String message) {
+        Alert alert = new Alert(type);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
 
+    @FXML private void handleModifyShelter() {
         try {
+            String shelterName = shelterNameField.getText();
+            String shelterCapacityString = shelterCapacityField.getText();
             int shelterCapacity = parseInt(shelterCapacityString);
+
             if(!shelterName.isEmpty()) {
                 this.shelter.setShelterName(shelterName);
             }
-            if(shelterCapacity > 0) {
-                if(shelterCapacity >= shelter.getAnimalCount())
-                {
-                    this.shelter.setShelterCapacity(shelterCapacity);
-                } else {
-                    System.err.println("W schronisku jest wiecej zwierzat niz wybrana pojemnosc");
-                    return;
-                }
+            if (shelterCapacity >= shelter.getAnimalCount()) {
+                this.shelter.setShelterCapacity(shelterCapacity);
+                this.shelter.updateFilling();
+                this.shelterTableView.refresh();
+                ((Stage)shelterNameField.getScene().getWindow()).close();
             } else {
-                System.err.println("Pojemnosc schroniska musi byc wieksza od 0");
-                return;
+                System.err.println("W schronisku jest wiecej zwierzat niz wybrana pojemnosc");
+                showAlert(Alert.AlertType.INFORMATION, "Nieprawidlowe dane", "Pojemnosc schroniska musi byc wartoscia wieksza od liczby zwierzat juz sie tam znajdujacych.");
             }
-            this.shelter.updateFilling();
-            this.shelterTableView.refresh();
         }
-        catch (NumberFormatException e) { e.printStackTrace(); }
-
-        ((Stage)shelterNameField.getScene().getWindow()).close();
+        catch (NumberFormatException e) {
+            System.err.println("Pojemnosc schroniska musi byc wartoscia liczbowa.");
+            showAlert(Alert.AlertType.INFORMATION, "Nieprawidlowe dane", "Pojemnosc schroniska musi byc wartoscia liczbowa.");
+        }
+        catch (InvalidCapacityException e) {
+            System.err.println(e.getMessage());
+            showAlert(Alert.AlertType.INFORMATION, "Nieprawidlowe dane", e.getMessage());
+        }
     }
 }
