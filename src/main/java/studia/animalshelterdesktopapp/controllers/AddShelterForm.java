@@ -1,35 +1,22 @@
 package studia.animalshelterdesktopapp.controllers;
 
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
-import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import studia.animalshelterdesktopapp.AnimalShelter;
 import studia.animalshelterdesktopapp.ShelterManager;
-import studia.animalshelterdesktopapp.exceptions.InvalidCapacityException;
-import studia.animalshelterdesktopapp.exceptions.ShelterAlreadyExistsException;
 
 import static java.lang.Integer.parseInt;
 
 public class AddShelterForm {
-    private ObservableList<AnimalShelter> shelters;
-    private TableView<AnimalShelter> shelterTableView;
-    private ShelterManager manager;
+    private AdminView adminView;
+    private ShelterManager manager = new ShelterManager();
     @FXML private TextField shelterNameField;
     @FXML private TextField shelterCapacityField;
 
-    public void setManager(ShelterManager manager) {
-        this.manager = manager;
-    }
-
-    public void setShelters(ObservableList<AnimalShelter> shelters) {
-        this.shelters = shelters;
-    }
-
-    public void setShelterTableView(TableView<AnimalShelter> shelterTableView) {
-        this.shelterTableView = shelterTableView;
+    public void setAdminView(AdminView adminView) {
+        this.adminView = adminView;
     }
 
     private void showAlert(Alert.AlertType type, String title, String message) {
@@ -47,12 +34,9 @@ public class AddShelterForm {
 
             if (!shelterName.isEmpty() && !shelterCapacityString.isEmpty()) {
                 int shelterCapacity = parseInt(shelterCapacityString);
-
-                if (this.manager.addShelter(new AnimalShelter(shelterName, shelterCapacity))) {
-                    this.shelters.add(new AnimalShelter(shelterName, shelterCapacity));
-                    this.shelterTableView.refresh();
-                    ((Stage) shelterNameField.getScene().getWindow()).close();
-                }
+                manager.addShelter(new AnimalShelter(shelterName, shelterCapacity));
+                adminView.loadShelters();
+                ((Stage) shelterNameField.getScene().getWindow()).close();
             } else {
                 System.err.println("Wszystkie dane schroniska musza byc podane.");
                 showAlert(Alert.AlertType.INFORMATION, "Nieprawidlowe dane", "Wszystkie dane schroniska musza byc podane.");
@@ -60,10 +44,6 @@ public class AddShelterForm {
         }
         catch (NumberFormatException e) {
             System.err.println("Pojemnosc schroniska musi byc wartoscia liczbowa.");
-            showAlert(Alert.AlertType.INFORMATION, "Nieprawidlowe dane", e.getMessage());
-        }
-        catch (InvalidCapacityException | ShelterAlreadyExistsException e) {
-            System.err.println(e.getMessage());
             showAlert(Alert.AlertType.INFORMATION, "Nieprawidlowe dane", e.getMessage());
         }
     }

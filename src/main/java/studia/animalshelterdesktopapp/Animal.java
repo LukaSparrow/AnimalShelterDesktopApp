@@ -1,10 +1,34 @@
 package studia.animalshelterdesktopapp;
 
-public class Animal implements Comparable<Animal>, Printable {
+import jakarta.persistence.*;
+
+import java.io.Serializable;
+
+@Entity
+@Table(name = "animals")
+public class Animal implements Comparable<Animal>, Printable, Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @ManyToOne
+    @JoinColumn(name = "shelter_id")
+    private AnimalShelter shelter;
+
+    @Column(nullable = false)
     private String animalName;
+
+    @Column(nullable = false)
     private String animalSpecies;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private AnimalCondition animalCondition;
+
+    @Column(nullable = false)
     private int animalAge;
+
+    @Column(nullable = false)
     private double animalPrice;
 
     public Animal(String name, String species, AnimalCondition condition, int age, double price) {
@@ -21,7 +45,10 @@ public class Animal implements Comparable<Animal>, Printable {
         this.animalCondition = animal.getAnimalCondition();
         this.animalAge = animal.getAnimalAge();
         this.animalPrice = animal.getAnimalPrice();
+        this.shelter = animal.getShelter();
     }
+
+    public Animal() {}
 
     @Override
     public void print() {
@@ -37,26 +64,6 @@ public class Animal implements Comparable<Animal>, Printable {
             return this.animalSpecies.compareTo(otherAnimal.animalSpecies);
         }
         return Integer.compare(this.animalAge, otherAnimal.animalAge);
-    }
-
-    @Override
-    public int compareNameTo(Animal otherAnimal) {
-        return this.animalName.compareTo(otherAnimal.animalName);
-    }
-
-    @Override
-    public int compareSpeciesTo(Animal otherAnimal) {
-        return this.animalSpecies.compareTo(otherAnimal.animalSpecies);
-    }
-
-    @Override
-    public int compareAgeTo(Animal otherAnimal) {
-        return Integer.compare(this.animalAge, otherAnimal.animalAge);
-    }
-
-    @Override
-    public int comparePriceTo(Animal otherAnimal) {
-        return Double.compare(this.animalPrice, otherAnimal.animalPrice);
     }
 
     public void setAnimalName(String name) {
@@ -94,4 +101,20 @@ public class Animal implements Comparable<Animal>, Printable {
     public int getAnimalAge() {return this.animalAge;}
 
     public double getAnimalPrice() {return this.animalPrice;}
+
+    public void setShelter(AnimalShelter shelter){
+        this.shelter = shelter;
+    }
+
+    public AnimalShelter getShelter() {
+        return this.shelter;
+    }
+
+    public Long getId() {
+        return this.id;
+    }
+
+    public double getPrice() {
+        return this.animalPrice;
+    }
 }

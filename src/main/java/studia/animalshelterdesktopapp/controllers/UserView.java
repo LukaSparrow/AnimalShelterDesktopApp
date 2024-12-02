@@ -1,5 +1,8 @@
 package studia.animalshelterdesktopapp.controllers;
 
+import javafx.beans.property.ReadOnlyObjectWrapper;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -15,18 +18,20 @@ import javafx.util.Callback;
 import studia.animalshelterdesktopapp.exceptions.AnimalNotFoundException;
 import studia.animalshelterdesktopapp.exceptions.ShelterNotFoundException;
 import java.io.IOException;
+import java.util.List;
 
 public class UserView extends AppView {
 
     @FXML private TableColumn<AnimalShelter, Void> contactShelterButton;
+    @FXML private TableColumn<AnimalShelter, Void> rateShelterButton;
     @FXML private TableColumn<Animal, Void> adoptAnimalButton;
 
     public void initialize() {
         // Inicjalizacja kolumn dla schronisk
         shelterName.setCellValueFactory(new PropertyValueFactory<>("shelterName"));
         capacity.setCellValueFactory(new PropertyValueFactory<>("maxCapacity"));
-        filling.setCellValueFactory(new PropertyValueFactory<>("filling"));
         addShelterContactButton();
+        addShelterRateButton();
 
         // Inicjalizacja kolumn dla zwierzat
         animalName.setCellValueFactory(new PropertyValueFactory<>("animalName"));
@@ -68,15 +73,72 @@ public class UserView extends AppView {
 
         searchAnimalField.setOnKeyReleased(event -> {
             //if(event.getCode() == KeyCode.ENTER) {
+            animalFilter = searchAnimalField.getText().toLowerCase();
             handleAnimalSearch();
             //}
         });
 
         searchShelterField.setOnKeyReleased(event -> {
             //if(event.getCode() == KeyCode.ENTER) {
+            shelterFilter = searchShelterField.getText().toLowerCase();
             handleShelterSearch();
             //}
         });
+
+        loadShelters();
+        try {
+            loadAnimalsForSelectedShelter(manager.getAllShelters().getFirst());
+        } catch (ShelterNotFoundException shelterNotFoundException) {
+            System.err.println(shelterNotFoundException.getMessage());
+        }
+    }
+
+    public void rateShelter(AnimalShelter shelter) throws ShelterNotFoundException {
+        if(shelter == null) {
+            throw new ShelterNotFoundException("Shelter not found");
+        }
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/studia/animalshelterdesktopapp/views/RateShelterForm.fxml"));
+            Region root = loader.load();
+
+            RateShelterForm rateForm = loader.getController();
+            rateForm.setShelter(shelter);
+            rateForm.setUserView(this);
+
+            Stage stage = new Stage();
+            stage.setTitle("Rate Shelter");
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            System.err.println("Failed to load FXML file.");
+        }
+    }
+
+    private void addShelterRateButton() {
+        Callback<TableColumn<AnimalShelter, Void>, TableCell<AnimalShelter,Void>> cellFactory = param -> new TableCell<>() {
+            private final Button modifyButton = new Button("Rate");
+            {
+                modifyButton.setOnAction(e -> {
+                    AnimalShelter shelter = getTableView().getItems().get(getIndex());
+                    try {
+                        rateShelter(shelter);
+                    } catch (ShelterNotFoundException shelterNotFoundException) {
+                        System.err.println("Schronisko nie istnieje.");
+                    }
+                });
+            }
+
+            @Override
+            protected void updateItem(Void item, boolean empty) {
+                super.updateItem(item,empty);
+                if(empty) {
+                    setGraphic(null);
+                } else {
+                    setGraphic(modifyButton);
+                }
+            }
+        };
+        this.rateShelterButton.setCellFactory(cellFactory);
     }
 
     private void addShelterContactButton() {
@@ -114,8 +176,11 @@ public class UserView extends AppView {
                     Animal animal = getTableView().getItems().get(getIndex());
                     try {
                         adoptAnimal(animal);
+                        loadAnimalsForSelectedShelter(selectedShelter);
                     } catch (AnimalNotFoundException animalNotFoundException) {
                         System.err.println("Zwierze nie istnieje");
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
                     }
                 });
             }
@@ -155,13 +220,18 @@ public class UserView extends AppView {
     }
 
     private void adoptAnimal(Animal animal) throws AnimalNotFoundException {
-        if(animal == null)
-        {
-            throw new AnimalNotFoundException("Zwierze nie istnieje.");
+        try {
+            if (animal == null) {
+                throw new AnimalNotFoundException("Zwierze nie istnieje.");
+            }
+            boolean res = manager.adoptAnimal(selectedShelter.getId(), animal.getId());
+            if (!res) {
+                System.err.println("Animal: " + animal.getAnimalName() + " already in adoption");
+                return;
+            }
+            loadAnimalsForSelectedShelter(selectedShelter);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        System.out.println("Adopting animal: " + animal.getAnimalName());
-        this.selectedShelter.getAnimal(animal.getAnimalName());
-        //animals.remove(animal);
-        animalsTable.refresh();
     }
 }

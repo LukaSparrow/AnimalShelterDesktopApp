@@ -30,35 +30,26 @@ public class DataGenerator {
         ShelterManager manager = new ShelterManager();
         int numOfShelters = Math.max((int)(Math.random() * shelterNames.length),5);
         for(int i=0; i < numOfShelters; i++) {
-            try {
-                manager.addShelter(
-                        new AnimalShelter(
-                                shelterNames[(int) (Math.random() * (shelterNames.length - 1))],
-                                (int) (Math.random() * 10 + 5)
-                        )
-                );
-            }
-            catch (InvalidCapacityException | ShelterAlreadyExistsException e) {
-                System.err.println(e.getMessage());
-            }
+            manager.addShelter(
+                    new AnimalShelter(
+                            shelterNames[(int) (Math.random() * (shelterNames.length - 1))],
+                            (int) (Math.random() * 10 + 5)
+                    )
+            );
         }
-        for(AnimalShelter shelter : manager.getShelters().values()) {
+        for(AnimalShelter shelter : manager.getAllShelters()) {
             int numOfAnimals = Math.max((int)(Math.random() * shelter.getMaxCapacity()),1);
             for(int j=0; j < numOfAnimals; j++) {
-                try {
-                    shelter.addAnimal(
-                            new Animal(
-                                    animalNames[(int)(Math.random() * (animalNames.length - 1))],
-                                    animalSpecies[(int)(Math.random() * (animalSpecies.length - 1))],
-                                    values[(int)(Math.random() * (AnimalCondition.values().length - 1))],
-                                    (int)(Math.random() * 25 + 1),
-                                    Math.random() * 900 + 100
-                                    )
-                    );
-                }
-                catch (AnimalAlreadyExistsException | NotEnoughCapacityException e) {
-                    System.err.println(e.getMessage());
-                }
+                manager.addAnimalToShelter(
+                        shelter.getId(),
+                        new Animal(
+                                animalNames[(int)(Math.random() * (animalNames.length - 1))],
+                                animalSpecies[(int)(Math.random() * (animalSpecies.length - 1))],
+                                values[(int)(Math.random() * (AnimalCondition.values().length - 1))],
+                                (int)(Math.random() * 25 + 1),
+                                Math.random() * 900 + 100
+                                )
+                );
             }
         }
         return manager;

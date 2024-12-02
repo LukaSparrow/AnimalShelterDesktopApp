@@ -1,5 +1,6 @@
 package studia.animalshelterdesktopapp.controllers;
 
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -8,22 +9,18 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-import studia.animalshelterdesktopapp.Animal;
-import studia.animalshelterdesktopapp.AnimalCondition;
-import studia.animalshelterdesktopapp.AnimalShelter;
-import studia.animalshelterdesktopapp.ShelterManager;
+import studia.animalshelterdesktopapp.*;
 import studia.animalshelterdesktopapp.exceptions.ManagerNotFoundException;
 import studia.animalshelterdesktopapp.exceptions.ShelterNotFoundException;
 
 import java.io.IOException;
+import java.util.List;
 
 public class AppView {
-    protected ShelterManager manager;
-    protected ObservableList<AnimalShelter> shelters;
-    protected ObservableList<Animal> animals;
+    protected String shelterFilter = "";
+    protected String animalFilter = "";
+    protected ShelterManager manager = new ShelterManager();
     protected AnimalShelter selectedShelter;
-    protected static int counter1 = 0;
-    protected static int counter2 = 0;
 
     @FXML protected Button logout;
     @FXML protected Button sortSheltersButton;
@@ -32,7 +29,7 @@ public class AppView {
     @FXML protected TableView<AnimalShelter> shelterTable;
     @FXML protected TableColumn<AnimalShelter, String> shelterName;
     @FXML protected TableColumn<AnimalShelter, Integer> capacity;
-    @FXML protected TableColumn<AnimalShelter, Integer> filling;
+    @FXML protected TableColumn<AnimalShelter, String> shelterRatings;
 
     @FXML protected TableView<Animal> animalsTable;
     @FXML protected TableColumn<Animal, String> animalName;
@@ -44,79 +41,101 @@ public class AppView {
     @FXML protected TextField searchAnimalField;
     @FXML protected TextField searchShelterField;
 
-    public void setManager(ShelterManager manager) throws ManagerNotFoundException {
-        this.manager = manager;
-        if(this.manager == null) {
-            throw new ManagerNotFoundException("Manadzer nie istnieje.");
-        }
-        this.shelters = FXCollections.observableArrayList(manager.getShelters().values());
-        this.selectedShelter = shelters.getFirst();
-        this.shelterTable.setItems(shelters);
-        this.animals = FXCollections.observableArrayList(selectedShelter.getAnimalList());
-        this.animalsTable.setItems(animals);
-    }
-
     @FXML protected void handleSortShelter() {
-        switch(counter1 % 3) {
-            case 0:
-                shelters.sort(AnimalShelter.nameComparator);
-                break;
-            case 1:
-                shelters.sort(AnimalShelter.capacityComparator);
-                break;
-            case 2:
-                shelters.sort(AnimalShelter.fillingComparator);
-                break;
-            default:
-                shelters.sort(AnimalShelter.nameComparator);
-                break;
-        }
-        shelterTable.refresh();
-        counter1++;
+        ObservableList<AnimalShelter> shelters = shelterTable.getItems();
+        FXCollections.sort(shelters);
     }
 
     @FXML protected void handleSortAnimal() {
-        switch(counter2 % 4) {
-            case 0:
-                animals.sort(Animal::compareNameTo);
-                System.out.println("Name");
-                break;
-            case 1:
-                animals.sort(Animal::compareSpeciesTo);
-                System.out.println("species");
-                break;
-            case 2:
-                animals.sort(Animal::compareAgeTo);
-                System.out.println("age");
-                break;
-            case 3:
-                animals.sort(Animal::comparePriceTo);
-                System.out.println("price");
-                break;
-        }
-        animalsTable.refresh();
-        counter2++;
+        ObservableList<Animal> animals = animalsTable.getItems();
+        FXCollections.sort(animals);
     }
 
     protected void handleAnimalSearch() {
-        animals = FXCollections.observableArrayList(selectedShelter.searchPartial(searchAnimalField.getText()));
-        animalsTable.setItems(animals);
-        animalsTable.refresh();
+        try {
+        loadAnimalsForSelectedShelter(selectedShelter);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     protected void handleShelterSearch() {
-        shelters = FXCollections.observableArrayList(manager.searchPartial(searchShelterField.getText()));
-        shelterTable.setItems(shelters);
-        shelterTable.refresh();
+        loadShelters();
     }
 
     protected void loadAnimalsForSelectedShelter(AnimalShelter selectedShelter) throws ShelterNotFoundException {
         if(selectedShelter == null) {
             throw new ShelterNotFoundException("Schronisko nie istnieje");
         }
-        animals = FXCollections.observableArrayList(selectedShelter.getAnimalList());
-        animalsTable.setItems(animals);
+        List<Animal> animals = manager.findAnimalsInShelter(selectedShelter.getId(), animalFilter, null);
+        animalsTable.setItems(FXCollections.observableList(animals));
         animalsTable.refresh();
+    }
+
+    protected void loadRatingsSummary() {
+        List<Object[]> summary = manager.getShelterRatingsSummary();
+
+        shelterRatings.setCellValueFactory(cellData -> {
+            AnimalShelter shelter = cellData.getValue();
+
+            Object[] matchingRow = summary.stream()
+                    .filter(row -> row[0].equals(shelter.getShelterName()))
+                    .findFirst()
+                    .orElse(null);
+
+            if (matchingRow != null && matchingRow.length >= 3) {
+                double avgRating = (double) matchingRow[1];
+                long count = (long) matchingRow[2];
+                String formattedRating = String.format("%.2f", avgRating);
+                return new SimpleStringProperty(formattedRating + " (" + count + ")");
+            } else {
+                return new SimpleStringProperty("Brak danych");
+            }
+        });
+    }
+
+    protected void loadShelters() {
+        try {
+            List<AnimalShelter> shelters = manager.findSheltersByName(shelterFilter);
+            shelterTable.getItems().setAll(FXCollections.observableList(shelters));
+            loadRatingsSummary();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void onSerializeShelters() {
+        try {
+            this.manager.serializeShelters();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void onDeserializeShelters() {
+        try {
+            this.manager.deserializeShelters();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        loadShelters();
+    }
+
+    public void onExportShelters() {
+        try {
+            this.manager.exportSheltersToCSV();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void onImportShelters() {
+        try {
+            this.manager.importSheltersFromCSV();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        loadShelters();
     }
 
     @FXML protected void logOut() {

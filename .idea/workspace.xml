@@ -4,9 +4,43 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6b3693b8-fb4e-40ba-99e5-29017425f1df" name="Changes" comment="Unit tests, and final polishes">
+    <list default="true" id="6b3693b8-fb4e-40ba-99e5-29017425f1df" name="Changes" comment="Hibernate integration with  local MySQL database, serialization and deserialization, export/import to/from csv">
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/DAO/AnimalDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/DAO/AnimalShelterDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/DAO/IDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/DAO/RatingDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/Rating.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/ValidateNotEmpty.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/ValidationService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/controllers/CSVUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/controllers/HibernateUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/controllers/RateShelterForm.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/controllers/SerializationUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/studia/animalshelterdesktopapp/views/RateShelterForm.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/Animal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/Animal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/AnimalCondition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/AnimalCondition.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/AnimalShelter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/AnimalShelter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/Comparable.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/DataGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/DataGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/ShelterManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/ShelterManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/controllers/AddAnimalForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/controllers/AddAnimalForm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/controllers/AddShelterForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/controllers/AddShelterForm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/controllers/AdminView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/controllers/AdminView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/controllers/AppView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/controllers/AppView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/controllers/LoginView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/controllers/LoginView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/controllers/ModifyAnimalForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/controllers/ModifyAnimalForm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/controllers/ModifyShelterForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/controllers/ModifyShelterForm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/controllers/UserView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studia/animalshelterdesktopapp/controllers/UserView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/studia/animalshelterdesktopapp/views/AdminView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/studia/animalshelterdesktopapp/views/AdminView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/studia/animalshelterdesktopapp/views/UserView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/studia/animalshelterdesktopapp/views/UserView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/studia/animalshelterdesktopapp/DataGeneratorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/studia/animalshelterdesktopapp/DataGeneratorTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/studia/animalshelterdesktopapp/ShelterManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/studia/animalshelterdesktopapp/ShelterManagerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,10 +54,11 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="CSS File" />
-        <option value="FxmlFile" />
         <option value="Exception" />
-        <option value="Class" />
         <option value="JUnit5 Test Class" />
+        <option value="Interface" />
+        <option value="FxmlFile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -82,6 +117,7 @@
     &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
     &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/Łukasz/IdeaProjects/AnimalShelterDesktopApp/javafx-fxml-23.0.1.jar&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
@@ -179,7 +215,12 @@
       <workItem from="1732011942655" duration="1740000" />
       <workItem from="1732013834569" duration="858000" />
       <workItem from="1732014908620" duration="4045000" />
-      <workItem from="1732057832208" duration="146000" />
+      <workItem from="1732057832208" duration="200000" />
+      <workItem from="1732106945445" duration="3770000" />
+      <workItem from="1732292755340" duration="8000" />
+      <workItem from="1732789397322" duration="3291000" />
+      <workItem from="1733083886433" duration="8133000" />
+      <workItem from="1733123925400" duration="33041000" />
     </task>
     <task id="LOCAL-00001" summary="Admin Panel Functionalities">
       <option name="closed" value="true" />
@@ -229,7 +270,15 @@
       <option name="project" value="LOCAL" />
       <updated>1732018854858</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Search partial for animal condition combobox field">
+      <option name="closed" value="true" />
+      <created>1732058004096</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1732058004096</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -252,7 +301,9 @@
     <MESSAGE value="User Panel + some beautification" />
     <MESSAGE value="Exceptions addition and handling added, superclass for admin and user views controllers added." />
     <MESSAGE value="Unit tests, and final polishes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Unit tests, and final polishes" />
+    <MESSAGE value="Search partial for animal condition combobox field" />
+    <MESSAGE value="Hibernate integration with  local MySQL database, serialization and deserialization, export/import to/from csv" />
+    <option name="LAST_COMMIT_MESSAGE" value="Hibernate integration with  local MySQL database, serialization and deserialization, export/import to/from csv" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/AnimalShelterDesktopApp$AnimalTest.exec" NAME="AnimalTest Coverage Results" MODIFIED="1732014017335" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="jacoco" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
@@ -262,9 +313,9 @@
       <FILTER>studia.animalshelterdesktopapp.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/AnimalShelterDesktopApp$AnimalShelterDesktopApp.exec" NAME="AnimalShelterDesktopApp Coverage Results" MODIFIED="1732014269681" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="jacoco" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
-    <SUITE FILE_PATH="coverage/AnimalShelterDesktopApp$AnimalShelterDesktopApp.ic" NAME="AnimalShelterDesktopApp Coverage Results" MODIFIED="1732018373454" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+    <SUITE FILE_PATH="coverage/AnimalShelterDesktopApp$AnimalShelterDesktopApp.ic" NAME="AnimalShelterDesktopApp Coverage Results" MODIFIED="1732108177532" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
     <SUITE FILE_PATH="coverage/AnimalShelterDesktopApp$All_in_AnimalShelterDesktopApp.exec" NAME="All in AnimalShelterDesktopApp Coverage Results" MODIFIED="1732014233115" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="jacoco" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
-    <SUITE FILE_PATH="coverage/AnimalShelterDesktopApp$All_in_AnimalShelterDesktopApp.ic" NAME="All in AnimalShelterDesktopApp Coverage Results" MODIFIED="1732018441288" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+    <SUITE FILE_PATH="coverage/AnimalShelterDesktopApp$All_in_AnimalShelterDesktopApp.ic" NAME="All in AnimalShelterDesktopApp Coverage Results" MODIFIED="1732111249271" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <EXCLUDED_FILTER>studia.animalshelterdesktopapp.controllers.*</EXCLUDED_FILTER>
       <EXCLUDED_FILTER>studia.animalshelterdesktopapp.Main</EXCLUDED_FILTER>
     </SUITE>

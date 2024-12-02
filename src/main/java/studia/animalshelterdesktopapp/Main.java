@@ -5,6 +5,8 @@ import javafx.scene.Scene;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.stage.Stage;
+import org.hibernate.Session;
+import studia.animalshelterdesktopapp.controllers.HibernateUtil;
 import studia.animalshelterdesktopapp.controllers.LoginView;
 import studia.animalshelterdesktopapp.exceptions.ManagerNotFoundException;
 import java.io.IOException;
@@ -14,7 +16,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
-            ShelterManager manager = DataGenerator.getInstance().generateData();
+            ShelterManager manager = new ShelterManager();
 
             // Wczytanie pliku FXML
             FXMLLoader loader = new FXMLLoader(getClass().getResource("views/LoginView.fxml"));
@@ -31,7 +33,6 @@ public class Main extends Application {
             primaryStage.setTitle("Animal Shelter Manager");
             primaryStage.setScene(scene);
             primaryStage.show();
-
         }
         catch (IOException e) {
             System.err.println("Error loading view: " + e.getMessage());

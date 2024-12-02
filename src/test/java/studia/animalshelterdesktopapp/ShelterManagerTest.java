@@ -28,14 +28,7 @@ class ShelterManagerTest {
     @Test
     void testConstructor() {
         assertNotNull(shelterManager);
-        assertTrue(shelterManager.getShelters().isEmpty());
-    }
-
-    @Test
-    void testAddShelterSuccess() throws InvalidCapacityException, ShelterAlreadyExistsException {
-        boolean result = shelterManager.addShelter(shelter1);
-        assertTrue(result);
-        assertTrue(shelterManager.getShelters().containsKey(shelter1.getShelterName()));
+        assertTrue(shelterManager.getAllShelters().isEmpty());
     }
 
     @Test
@@ -46,7 +39,7 @@ class ShelterManagerTest {
 
     @Test
     void testAddShelterInvalidCapacityException() {
-        assertThrows(InvalidCapacityException.class, () -> shelterManager.addShelter("Test Shelter", -1));
+        assertThrows(InvalidCapacityException.class, () -> shelterManager.addShelter(new AnimalShelter("Test Shelter", -1)));
     }
 
     @Test
@@ -64,34 +57,17 @@ class ShelterManagerTest {
     }
 
     @Test
-    void testSearchPartial() throws InvalidCapacityException, ShelterAlreadyExistsException {
-        shelterManager.addShelter(shelter1);
-        shelterManager.addShelter(shelter2);
-
-        List<AnimalShelter> foundShelters = shelterManager.searchPartial("Paws");
-        assertEquals(1, foundShelters.size());
-        assertEquals(shelter1, foundShelters.getFirst());
-    }
-
-    @Test
     void testRemoveShelterByName() throws InvalidCapacityException, ShelterAlreadyExistsException {
         shelterManager.addShelter(shelter1);
         shelterManager.removeShelter(shelter1.getShelterName());
-        assertFalse(shelterManager.getShelters().containsKey(shelter1.getShelterName()));
-    }
-
-    @Test
-    void testRemoveShelterByObject() throws InvalidCapacityException, ShelterAlreadyExistsException {
-        shelterManager.addShelter(shelter1);
-        shelterManager.removeShelter(shelter1);
-        assertFalse(shelterManager.getShelters().containsKey(shelter1.getShelterName()));
+        assertFalse(shelterManager.getShelter(shelter1.getShelterName()) != null);
     }
 
     @Test
     void testRemoveShelterNotFound() {
         shelterManager.removeShelter("NonExistent Shelter");
         // Nic się nie dzieje, ale nie rzuca się wyjątek
-        assertTrue(shelterManager.getShelters().isEmpty());
+        assertTrue(shelterManager.getAllShelters().isEmpty());
     }
 
     @Test
@@ -99,24 +75,24 @@ class ShelterManagerTest {
         shelterManager.addShelter(shelter1);
         shelterManager.addShelter(shelter2);
 
-        List<AnimalShelter> emptyShelters = shelterManager.findEmpty();
+        List<AnimalShelter> emptyShelters = shelterManager.findEmptyShelters();
         assertNotNull(emptyShelters);
         assertFalse(emptyShelters.isEmpty());
 
         shelter2.addAnimal(new Animal("Buddy", "Dog", AnimalCondition.ZDROWE, 3, 150.0));
-        emptyShelters = shelterManager.findEmpty();
+        emptyShelters = shelterManager.findEmptyShelters();
         assertEquals(1, emptyShelters.size());
         assertEquals(shelter1, emptyShelters.getFirst());
     }
 
     @Test
-    void testGetShelters() throws InvalidCapacityException, ShelterAlreadyExistsException {
+    void testGetAllShelters() {
         shelterManager.addShelter(shelter1);
         shelterManager.addShelter(shelter2);
 
-        Map<String, AnimalShelter> shelters = shelterManager.getShelters();
+        List<AnimalShelter> shelters = shelterManager.getAllShelters();
         assertEquals(2, shelters.size());
-        assertTrue(shelters.containsKey(shelter1.getShelterName()));
-        assertTrue(shelters.containsKey(shelter2.getShelterName()));
+        assertTrue(shelterManager.getShelter(shelter1.getShelterName()).equals(shelter1));
+        assertTrue(shelterManager.getShelter(shelter2.getShelterName()).equals(shelter2));
     }
 }

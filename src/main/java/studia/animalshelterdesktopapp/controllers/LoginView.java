@@ -64,14 +64,6 @@ public class LoginView {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/studia/animalshelterdesktopapp/views/" + fxmlFile));
             Parent root = loader.load();
 
-            if(title.equals("Administrator")) {
-                AdminView adminViewController = loader.getController();
-                adminViewController.setManager(this.manager);
-            } else {
-                UserView userViewController = loader.getController();
-                userViewController.setManager(this.manager);
-            }
-
             // Tworzymy nowe okno
             Stage newStage = new Stage();
             newStage.setMinWidth(960);
@@ -89,9 +81,6 @@ public class LoginView {
         catch (IOException e) {
             System.err.println("Error loading view: " + e.getMessage());
             System.err.println("Failed to load FXML file.");
-        }
-        catch (ManagerNotFoundException e) {
-            System.err.println(e.getMessage());
         }
     }
 }

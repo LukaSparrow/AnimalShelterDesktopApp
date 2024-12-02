@@ -37,36 +37,40 @@ class DataGeneratorTest {
         assertNotNull(shelterManager, "Shelter manager should not be null.");
 
         // Get the shelters map
-        Map<String, AnimalShelter> shelters = shelterManager.getShelters();
+        List<AnimalShelter> shelters = shelterManager.getAllShelters();
 
         // Ensure there is a reasonable number of shelters (at least 1, or better more)
         assertFalse(shelters.isEmpty(), "There should be at least 1 shelter.");
 
         // Ensure each shelter has a non-empty, non-null name
-        shelters.forEach((name, shelter) -> {
-            assertNotNull(name, "Shelter name should not be null.");
-            assertFalse(name.isEmpty(), "Shelter name should not be empty.");
+        shelters.forEach(shelter -> {
+            assertNotNull(shelter.getShelterName(), "Shelter name should not be null.");
+            assertFalse(shelter.getShelterName().isEmpty(), "Shelter name should not be empty.");
         });
 
         // Ensure all shelter names are unique
-        Set<String> uniqueNames = new HashSet<>(shelters.keySet());
+        Set<String> uniqueNames = new HashSet<>();
+        shelters.forEach(shelter -> {
+            uniqueNames.add(shelter.getShelterName());
+        });
         assertEquals(shelters.size(), uniqueNames.size(), "All shelter names should be unique.");
     }
 
     // Test sprawdzający, czy generowanie zwierząt nie przekracza pojemności schronisk
     @Test
     void testNoExceedingShelterCapacity() {
-        shelterManager.getShelters().forEach((key, shelter) -> {
+        List<AnimalShelter> shelters = shelterManager.getAllShelters();
+        shelters.forEach(shelter -> {
             List<Animal> animals = shelter.getAnimalList();
             assertTrue(animals.size() <= shelter.getMaxCapacity(),
-                    "Number of animals in shelter " + key + " should not exceed its capacity.");
+                    "Number of animals in shelter " + shelter.getShelterName() + " should not exceed its capacity.");
         });
     }
 
     // Test sprawdzający poprawność losowania zwierząt
     @Test
     void testGeneratedAnimals() {
-        shelterManager.getShelters().forEach((key, shelter) -> shelter.getAnimalList().forEach(animal -> {
+        shelterManager.getAllShelters().forEach(shelter -> shelter.getAnimalList().forEach(animal -> {
             assertNotNull(animal.getAnimalName(), "Animal name should not be null.");
             assertNotNull(animal.getAnimalSpecies(), "Animal species should not be null.");
             assertNotNull(animal.getAnimalCondition(), "Animal condition should not be null.");
@@ -83,20 +87,20 @@ class DataGeneratorTest {
         assertDoesNotThrow(() -> {
             ShelterManager manager = dataGenerator.generateData();
             assertNotNull(manager);
-            assertFalse(manager.getShelters().isEmpty(), "At least one shelter should be generated.");
+            assertFalse(manager.getAllShelters().isEmpty(), "At least one shelter should be generated.");
         }, "Generating data should not throw any exceptions.");
     }
 
     // Test sprawdzający, czy schroniska mają zwierzęta
     @Test
     void testSheltersHaveAnimals() {
-        shelterManager.getShelters().forEach((key, shelter) -> assertTrue(shelter.getAnimalCount() > 0, "Shelter should have at least one animal."));
+        shelterManager.getAllShelters().forEach( shelter -> assertTrue(shelter.getAnimalList().size() > 0, "Shelter should have at least one animal."));
     }
 
     // Test sprawdzający, czy liczba zwierząt w schronisku nie przekracza pojemności
     @Test
     void testShelterCapacity() {
-        shelterManager.getShelters().forEach((key, shelter) -> assertTrue(shelter.getAnimalCount() <= shelter.getMaxCapacity(),
+        shelterManager.getAllShelters().forEach( shelter -> assertTrue(shelter.getAnimalList().size() <= shelter.getMaxCapacity(),
                 "Animal count should not exceed shelter capacity."));
     }
 

@@ -1,5 +1,8 @@
 package studia.animalshelterdesktopapp.controllers;
 
+import javafx.beans.property.ReadOnlyObjectWrapper;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -30,9 +33,7 @@ public class AdminView extends AppView {
             Region root = loader.load();
 
             AddShelterForm addForm = loader.getController();
-            addForm.setManager(this.manager);
-            addForm.setShelters(this.shelters);
-            addForm.setShelterTableView(shelterTable);
+            addForm.setAdminView(this);
 
             Stage stage = new Stage();
             stage.setTitle("Add Shelter");
@@ -49,9 +50,8 @@ public class AdminView extends AppView {
             Region root = loader.load();
 
             AddAnimalForm addForm = loader.getController();
-            addForm.setAnimals(this.animals);
             addForm.setShelter(this.selectedShelter);
-            addForm.setShelterTableView(this.shelterTable);
+            addForm.setAdminView(this);
 
             Stage stage = new Stage();
             stage.setTitle("Add Animal");
@@ -66,7 +66,6 @@ public class AdminView extends AppView {
         // Inicjalizacja kolumn dla schronisk
         shelterName.setCellValueFactory(new PropertyValueFactory<>("shelterName"));
         capacity.setCellValueFactory(new PropertyValueFactory<>("maxCapacity"));
-        filling.setCellValueFactory(new PropertyValueFactory<>("filling"));
         addShelterModifyButton();
         addShelterDeleteButton();
 
@@ -111,15 +110,24 @@ public class AdminView extends AppView {
 
         searchAnimalField.setOnKeyReleased(event -> {
             //if(event.getCode() == KeyCode.ENTER) {
-                handleAnimalSearch();
+            animalFilter = searchAnimalField.getText().toLowerCase();
+            handleAnimalSearch();
             //}
         });
 
         searchShelterField.setOnKeyReleased(event -> {
             //if(event.getCode() == KeyCode.ENTER) {
-                handleShelterSearch();
+            shelterFilter = searchShelterField.getText().toLowerCase();
+            handleShelterSearch();
             //}
         });
+
+        loadShelters();
+        try {
+            loadAnimalsForSelectedShelter(manager.getAllShelters().getFirst());
+        } catch (ShelterNotFoundException shelterNotFoundException) {
+            System.err.println(shelterNotFoundException.getMessage());
+        }
     }
 
     private void addShelterModifyButton() {
@@ -246,7 +254,7 @@ public class AdminView extends AppView {
             ModifyShelterForm modifyForm = loader.getController();
             modifyForm.setShelter(shelter);
             modifyForm.initValues();
-            modifyForm.setShelterTableView(this.shelterTable);
+            modifyForm.setAdminView(this);
 
             Stage stage = new Stage();
             stage.setTitle("Modify Shelter");
@@ -258,13 +266,8 @@ public class AdminView extends AppView {
     }
 
     private void deleteShelter(AnimalShelter shelter) throws ShelterNotFoundException {
-        if(shelter == null) {
-            throw new ShelterNotFoundException("Schronisko nie istnieje.");
-        }
-        System.out.println("Deleting shelter: " + shelter.getShelterName());
-        manager.removeShelter(shelter); // Usunięcie schroniska z bazy danych
-        shelterTable.getItems().remove(shelter); // Aktualizacja widoku
-        shelterTable.refresh();
+        manager.removeShelter(shelter.getShelterName());
+        loadShelters();
     }
 
     private void modifyAnimal(Animal animal) throws AnimalNotFoundException {
@@ -278,10 +281,9 @@ public class AdminView extends AppView {
 
             ModifyAnimalForm modifyForm = loader.getController();
             modifyForm.setAnimal(animal);
-            modifyForm.setAnimals(this.animals);
             modifyForm.initValues();
             modifyForm.setShelter(this.selectedShelter);
-            modifyForm.setAnimalTableView(this.animalsTable);
+            modifyForm.setAdminView(this);
 
             Stage stage = new Stage();
             stage.setTitle("Modify Animal");
@@ -293,12 +295,15 @@ public class AdminView extends AppView {
     }
 
     private void deleteAnimal(Animal animal) throws AnimalNotFoundException {
-        if(animal == null) {
-            throw new AnimalNotFoundException("Zwierze nie istnieje.");
+        try {
+            if (animal == null) {
+                throw new AnimalNotFoundException("Zwierze nie istnieje.");
+            }
+            System.out.println("Deleting animal: " + animal.getAnimalName());
+            manager.removeAnimalFromShelter(selectedShelter.getId(), animal.getId());
+            loadAnimalsForSelectedShelter(selectedShelter);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        System.out.println("Deleting animal: " + animal.getAnimalName());
-        this.selectedShelter.removeAnimal(animal);
-        animalsTable.getItems().remove(animal);
-        shelterTable.refresh();
     }
 }

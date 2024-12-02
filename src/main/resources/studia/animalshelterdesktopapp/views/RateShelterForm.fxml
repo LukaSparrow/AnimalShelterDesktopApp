@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="studia.animalshelterdesktopapp.controllers.RateShelterForm"
+      spacing="15" alignment="CENTER" stylesheets="@/styles.css" styleClass="form-container">
+    <Label text="Rate Shelter" style="-fx-font-size: 24"/>
+
+    <Label text="Rating" />
+    <ComboBox fx:id="rating" styleClass="text-field"/>
+
+    <Label text="Comment" />
+    <TextField fx:id="rateShelterComment" promptText="Comment..." styleClass="text-field"/>
+
+    <Button text="Rate" onAction="#handleRateShelter" styleClass="submit-button"/>
+</VBox>

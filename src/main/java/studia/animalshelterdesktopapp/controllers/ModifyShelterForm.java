@@ -6,22 +6,24 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import studia.animalshelterdesktopapp.AnimalShelter;
+import studia.animalshelterdesktopapp.ShelterManager;
 import studia.animalshelterdesktopapp.exceptions.InvalidCapacityException;
 
 import static java.lang.Integer.parseInt;
 
 public class ModifyShelterForm {
+    private AdminView adminView;
+    private ShelterManager manager = new ShelterManager();
     private AnimalShelter shelter;
-    private TableView<AnimalShelter> shelterTableView;
     @FXML private TextField shelterNameField;
     @FXML private TextField shelterCapacityField;
 
-    public void setShelter(AnimalShelter shelter) {
-        this.shelter = shelter;
+    public void setAdminView(AdminView adminView) {
+        this.adminView = adminView;
     }
 
-    public void setShelterTableView(TableView<AnimalShelter> shelterTableView) {
-        this.shelterTableView = shelterTableView;
+    public void setShelter(AnimalShelter shelter) {
+        this.shelter = shelter;
     }
 
     public void initValues() {
@@ -43,13 +45,15 @@ public class ModifyShelterForm {
             String shelterCapacityString = shelterCapacityField.getText();
             int shelterCapacity = parseInt(shelterCapacityString);
 
-            if(!shelterName.isEmpty()) {
-                this.shelter.setShelterName(shelterName);
+            AnimalShelter modifiedShelter = new AnimalShelter(shelter.getShelterName(), shelterCapacity);
+
+            if (!shelterName.isEmpty()) {
+                modifiedShelter.setShelterName(shelterName);
             }
-            if (shelterCapacity >= shelter.getAnimalCount()) {
-                this.shelter.setShelterCapacity(shelterCapacity);
-                this.shelter.updateFilling();
-                this.shelterTableView.refresh();
+            if (shelterCapacity >= manager.getShelter(shelter.getId()).getAnimalList().size()) {
+                modifiedShelter.setMaxCapacity(shelterCapacity);
+                manager.updateShelter(shelter,modifiedShelter);
+                adminView.loadShelters();
                 ((Stage)shelterNameField.getScene().getWindow()).close();
             } else {
                 System.err.println("W schronisku jest wiecej zwierzat niz wybrana pojemnosc");
@@ -59,10 +63,6 @@ public class ModifyShelterForm {
         catch (NumberFormatException e) {
             System.err.println("Pojemnosc schroniska musi byc wartoscia liczbowa.");
             showAlert(Alert.AlertType.INFORMATION, "Nieprawidlowe dane", "Pojemnosc schroniska musi byc wartoscia liczbowa.");
-        }
-        catch (InvalidCapacityException e) {
-            System.err.println(e.getMessage());
-            showAlert(Alert.AlertType.INFORMATION, "Nieprawidlowe dane", e.getMessage());
         }
     }
 }

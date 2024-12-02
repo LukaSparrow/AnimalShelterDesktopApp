@@ -10,16 +10,18 @@ import javafx.stage.Stage;
 import studia.animalshelterdesktopapp.Animal;
 import studia.animalshelterdesktopapp.AnimalCondition;
 import studia.animalshelterdesktopapp.AnimalShelter;
+import studia.animalshelterdesktopapp.ShelterManager;
+import studia.animalshelterdesktopapp.exceptions.ShelterNotFoundException;
 
 import static java.lang.Float.parseFloat;
 import static java.lang.Integer.parseInt;
 
 
 public class ModifyAnimalForm {
+    private ShelterManager manager = new ShelterManager();
     private Animal animal;
-    private ObservableList<Animal> animals;
     private AnimalShelter shelter;
-    private TableView<Animal> animalTableView;
+    private AdminView adminView;
     @FXML private TextField animalNameField;
     @FXML private TextField animalSpeciesField;
     @FXML private ComboBox<AnimalCondition> animalConditionCombobox;
@@ -30,16 +32,12 @@ public class ModifyAnimalForm {
         this.animal = animal;
     }
 
-    public void setAnimals(ObservableList<Animal> animals) {
-        this.animals = animals;
-    }
-
     public void setShelter(AnimalShelter shelter) {
         this.shelter = shelter;
     }
 
-    public void setAnimalTableView(TableView<Animal> animalTableView) {
-        this.animalTableView = animalTableView;
+    public void setAdminView(AdminView adminView) {
+        this.adminView = adminView;
     }
 
     @FXML public void initialize() {
@@ -80,13 +78,17 @@ public class ModifyAnimalForm {
             int animalAgeInt = parseInt(animalAge);
             double animalPriceDouble = parseFloat(animalPrice);
 
-            if(!animalName.isEmpty()) this.animal.setAnimalName(animalName);
-            if(!animalSpecies.isEmpty()) this.animal.setAnimalSpecies(animalSpecies);
-            if(animalCondition != null) this.animal.setAnimalCondition(animalCondition);
-            if(animalAgeInt != 0) this.animal.setAnimalAge(animalAgeInt);
-            if(animalPriceDouble != 0) this.animal.setAnimalPrice(animalPriceDouble);
+            Animal modifiedAnimal = new Animal(this.animal);
 
-            this.animalTableView.refresh();
+            if(!animalName.isEmpty()) modifiedAnimal.setAnimalName(animalName);
+            if(!animalSpecies.isEmpty()) modifiedAnimal.setAnimalSpecies(animalSpecies);
+            if(animalCondition != null) modifiedAnimal.setAnimalCondition(animalCondition);
+            if(animalAgeInt != 0) modifiedAnimal.setAnimalAge(animalAgeInt);
+            if(animalPriceDouble != 0) modifiedAnimal.setAnimalPrice(animalPriceDouble);
+
+            manager.updateAnimalInShelter(shelter.getId(), animal.getId(), modifiedAnimal);
+            adminView.loadAnimalsForSelectedShelter(shelter);
+
             ((Stage)animalNameField.getScene().getWindow()).close();
         } catch (NumberFormatException e) {
             StackTraceElement[] stackTrace = e.getStackTrace();
@@ -101,6 +103,8 @@ public class ModifyAnimalForm {
                     showAlert(Alert.AlertType.INFORMATION, "Nieprawidlowe dane", "Nieprawidlowa cena zwierzecia.");
                 }
             }
+        } catch (ShelterNotFoundException e) {
+            e.printStackTrace();
         }
     }
 }

@@ -1,0 +1,23 @@
+<hibernate-configuration>
+    <session-factory>
+        <!-- Ustawienia JDBC -->
+        <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/animal_shelter_db?useSSL=false</property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.connection.password"></property>
+
+        <!-- Dialect Hibernate -->
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+
+        <!-- Opcjonalne właściwości -->
+        <property name="hibernate.hbm2ddl.auto">update</property>
+        <property name="hibernate.show_sql">true</property>
+        <property name="hibernate.format_sql">true</property>
+
+        <!-- Dodanie encji do mapowania -->
+        <mapping class="studia.animalshelterdesktopapp.Animal"/>
+        <mapping class="studia.animalshelterdesktopapp.AnimalShelter"/>
+        <mapping class="studia.animalshelterdesktopapp.Rating"/>
+        <!-- Dodaj tutaj kolejne encje, jeśli istnieją -->
+    </session-factory>
+</hibernate-configuration>
